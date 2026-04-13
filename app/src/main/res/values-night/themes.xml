@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Base.Theme.BOOP" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/boop_green</item>
+        <item name="colorPrimaryContainer">@color/green_light_dark</item>
+        <item name="colorOnPrimary">@color/surface_dark</item>
+        <item name="colorOnPrimaryContainer">@color/boop_green</item>
+        <item name="android:colorBackground">@color/background_dark</item>
+        <item name="colorSurface">@color/surface_dark</item>
+        <item name="colorOnSurface">@color/text_primary_dark</item>
+        <item name="colorError">@color/alert_red</item>
+        <item name="android:statusBarColor">@color/surface_dark</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:navigationBarColor">@color/surface_dark</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+    <style name="Theme.BOOP" parent="Base.Theme.BOOP" />
+</resources>
