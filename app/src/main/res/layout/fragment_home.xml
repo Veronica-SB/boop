@@ -1,67 +1,590 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:background="@color/background_light"
+    android:fillViewport="true">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Mis Mascotas"
-        android:textStyle="bold"
-        android:textSize="18sp"
-        android:textColor="#1A1A1A"
-        android:layout_marginBottom="12dp"/>
-
-    <HorizontalScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scrollbars="none">
+        android:orientation="vertical"
+        android:paddingBottom="96dp">
 
+        <!-- Header -->
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:background="@color/surface_light"
+            android:padding="24dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_marginEnd="15dp"
-                app:cardCornerRadius="40dp"
-                app:cardElevation="2dp">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/tv_greeting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="¡Hola, Narcís! 👋"
+                    android:textSize="22sp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:textColor="@color/text_primary_light" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="¿Cómo están tus mascotas hoy?"
+                    android:textSize="13sp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/text_secondary_light"
+                    android:layout_marginTop="2dp" />
+            </LinearLayout>
+
+            <!-- Bell icon -->
+            <FrameLayout
+                android:id="@+id/btn_notifications"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/bg_circle_green_light"
+                android:clickable="true"
+                android:focusable="true">
                 <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/logo_boop"
-                    android:scaleType="centerInside"
-                    android:padding="10dp"
-                    android:background="#E0E0E0"/>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                app:cardCornerRadius="40dp"
-                app:cardElevation="0dp">
-                <ImageButton
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="#F0F0F0"
-                    android:src="@android:drawable/ic_input_add"
-                    app:tint="#33CC99" />
-            </androidx.cardview.widget.CardView>
-
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_bell"
+                    app:tint="@color/boop_green" />
+            </FrameLayout>
         </LinearLayout>
-    </HorizontalScrollView>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Próximas citas"
-        android:layout_marginTop="30dp"
-        android:textStyle="bold"
-        android:textColor="#1A1A1A" />
+        <!-- Mis mascotas section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="12dp"
+            android:gravity="center_vertical">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Mis mascotas"
+                android:textSize="16sp"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/text_primary_light" />
+            <TextView
+                android:id="@+id/tv_see_all_pets"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ver todas"
+                android:textSize="13sp"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/boop_green"
+                android:clickable="true"
+                android:focusable="true" />
+        </LinearLayout>
 
-</LinearLayout>
+        <!-- Pets carousel -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp">
+            <LinearLayout
+                android:id="@+id/pets_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <!-- Pet card sample -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_marginEnd="16dp"
+                    android:clickable="true"
+                    android:focusable="true">
+                    <FrameLayout
+                        android:layout_width="72dp"
+                        android:layout_height="72dp">
+                        <ImageView
+                            android:layout_width="72dp"
+                            android:layout_height="72dp"
+                            android:src="@drawable/ic_dog"
+                            android:background="@drawable/bg_circle_green_light"
+                            android:padding="12dp"
+                            android:scaleType="centerInside" />
+                        <!-- Status dot -->
+                        <View
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:layout_gravity="bottom|end"
+                            android:background="@drawable/bg_status_dot_green" />
+                    </FrameLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Max"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:textColor="@color/text_primary_light"
+                        android:layout_marginTop="6dp" />
+                </LinearLayout>
+
+                <!-- Add pet button -->
+                <LinearLayout
+                    android:id="@+id/btn_add_pet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:clickable="true"
+                    android:focusable="true">
+                    <ImageView
+                        android:layout_width="72dp"
+                        android:layout_height="72dp"
+                        android:src="@drawable/ic_plus"
+                        android:background="@drawable/bg_circle_dashed_green"
+                        android:padding="22dp"
+                        android:scaleType="centerInside"
+                        app:tint="@color/boop_green" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Añadir"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/text_secondary_light"
+                        android:layout_marginTop="6dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <!-- Próximas alertas section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingTop="24dp"
+            android:paddingBottom="12dp"
+            android:gravity="center_vertical">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Próximas alertas"
+                android:textSize="16sp"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/text_primary_light" />
+            <TextView
+                android:id="@+id/tv_see_all_alerts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ver todas"
+                android:textSize="13sp"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/boop_green"
+                android:clickable="true"
+                android:focusable="true" />
+        </LinearLayout>
+
+        <!-- Alert card — urgente (rojo) -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="10dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="@color/alert_red_bg">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:gravity="center_vertical">
+                <View
+                    android:layout_width="4dp"
+                    android:layout_height="44dp"
+                    android:background="@color/alert_red"
+                    android:layout_marginEnd="12dp" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Vacuna antirrábica"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:textColor="@color/text_primary_light" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Max · Vence mañana"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/text_secondary_light"
+                        android:layout_marginTop="2dp" />
+                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🚨 Urgente"
+                    android:textSize="11sp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textColor="@color/alert_red"
+                    android:background="@drawable/bg_pill_red"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Alert card — próxima (amarillo) -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="10dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="@color/alert_yellow_bg">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:gravity="center_vertical">
+                <View
+                    android:layout_width="4dp"
+                    android:layout_height="44dp"
+                    android:background="@color/alert_yellow"
+                    android:layout_marginEnd="12dp" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Desparasitación interna"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:textColor="@color/text_primary_light" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Luna · En 5 días"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/text_secondary_light"
+                        android:layout_marginTop="2dp" />
+                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="⏰ Próxima"
+                    android:textSize="11sp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textColor="@color/alert_yellow_text"
+                    android:background="@drawable/bg_pill_yellow"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Alert card — ok (verde) -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="10dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="@color/boop_green_light">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:gravity="center_vertical">
+                <View
+                    android:layout_width="4dp"
+                    android:layout_height="44dp"
+                    android:background="@color/boop_green"
+                    android:layout_marginEnd="12dp" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Revisión anual"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:textColor="@color/text_primary_light" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Max · En 3 semanas"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/text_secondary_light"
+                        android:layout_marginTop="2dp" />
+                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="✅ Al día"
+                    android:textSize="11sp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textColor="@color/boop_green_dark"
+                    android:background="@drawable/bg_pill_green"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Veterinarios cercanos section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingTop="24dp"
+            android:paddingBottom="12dp"
+            android:gravity="center_vertical">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Cerca de ti"
+                android:textSize="16sp"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/text_primary_light" />
+            <TextView
+                android:id="@+id/tv_see_map"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ver mapa"
+                android:textSize="13sp"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/boop_green"
+                android:clickable="true"
+                android:focusable="true" />
+        </LinearLayout>
+
+        <!-- Nearby places horizontal scroll -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- Vet card -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="@color/surface_light">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="14dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginBottom="8dp">
+                            <FrameLayout
+                                android:layout_width="36dp"
+                                android:layout_height="36dp"
+                                android:background="@drawable/bg_rounded_green"
+                                android:layout_marginEnd="10dp">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text="🏥"
+                                    android:textSize="16sp" />
+                            </FrameLayout>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Clínica Vetica"
+                                    android:textSize="12sp"
+                                    android:fontFamily="@font/poppins_bold"
+                                    android:textColor="@color/text_primary_light" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Veterinario"
+                                    android:textSize="11sp"
+                                    android:fontFamily="@font/poppins_regular"
+                                    android:textColor="@color/text_secondary_light" />
+                            </LinearLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="⭐ 4.8"
+                                android:textSize="11sp"
+                                android:fontFamily="@font/poppins_regular"
+                                android:textColor="@color/text_secondary_light" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="· 320m"
+                                android:textSize="11sp"
+                                android:fontFamily="@font/poppins_regular"
+                                android:textColor="@color/text_secondary_light"
+                                android:layout_marginStart="4dp" />
+                            <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Abierto"
+                                android:textSize="11sp"
+                                android:fontFamily="@font/poppins_semibold"
+                                android:textColor="@color/boop_green" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Groomer card -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="@color/surface_light">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="14dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginBottom="8dp">
+                            <FrameLayout
+                                android:layout_width="36dp"
+                                android:layout_height="36dp"
+                                android:background="@drawable/bg_rounded_purple"
+                                android:layout_marginEnd="10dp">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text="✂️"
+                                    android:textSize="16sp" />
+                            </FrameLayout>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Pelu Pets"
+                                    android:textSize="12sp"
+                                    android:fontFamily="@font/poppins_bold"
+                                    android:textColor="@color/text_primary_light" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Peluquería"
+                                    android:textSize="11sp"
+                                    android:fontFamily="@font/poppins_regular"
+                                    android:textColor="@color/text_secondary_light" />
+                            </LinearLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="⭐ 4.7"
+                                android:textSize="11sp"
+                                android:fontFamily="@font/poppins_regular"
+                                android:textColor="@color/text_secondary_light" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="· 150m"
+                                android:textSize="11sp"
+                                android:fontFamily="@font/poppins_regular"
+                                android:textColor="@color/text_secondary_light"
+                                android:layout_marginStart="4dp" />
+                            <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Abierto"
+                                android:textSize="11sp"
+                                android:fontFamily="@font/poppins_semibold"
+                                android:textColor="@color/boop_green" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

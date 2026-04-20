@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Google Map -->
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- Search bar overlay -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="56dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+
+        <!-- Search row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_search_bar"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:layout_marginEnd="10dp">
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_search"
+                    app:tint="@color/text_tertiary_light"
+                    android:layout_marginEnd="10dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Buscar servicios..."
+                    android:textSize="14sp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/text_secondary_light" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/btn_filter"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/bg_filter_btn"
+                android:clickable="true"
+                android:focusable="true">
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_filter"
+                    app:tint="@color/text_secondary_light" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <!-- Filter chips -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:layout_marginTop="10dp">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/chip_vet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:gravity="center"
+                    android:text="🏥 Veterinario"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textColor="@color/white"
+                    android:background="@drawable/bg_chip_active"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp"
+                    android:layout_marginEnd="8dp"
+                    android:clickable="true"
+                    android:focusable="true" />
+
+                <TextView
+                    android:id="@+id/chip_groomer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:gravity="center"
+                    android:text="✂️ Peluquería"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textColor="@color/text_secondary_light"
+                    android:background="@drawable/bg_chip_inactive"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp"
+                    android:layout_marginEnd="8dp"
+                    android:clickable="true"
+                    android:focusable="true" />
+
+                <TextView
+                    android:id="@+id/chip_park"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:gravity="center"
+                    android:text="🌿 Parque"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textColor="@color/text_secondary_light"
+                    android:background="@drawable/bg_chip_inactive"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp"
+                    android:clickable="true"
+                    android:focusable="true" />
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+    </LinearLayout>
+
+    <!-- Bottom sheet with nearby places -->
+    <LinearLayout
+        android:id="@+id/map_bottom_sheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@drawable/bg_bottom_sheet"
+        android:orientation="vertical"
+        android:elevation="8dp">
+
+        <!-- Handle -->
+        <View
+            android:layout_width="40dp"
+            android:layout_height="4dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/bg_sheet_handle" />
+
+        <!-- Sheet header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="12dp"
+            android:gravity="center_vertical">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Cerca de ti"
+                android:textSize="15sp"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/text_primary_light" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3 lugares"
+                android:textSize="12sp"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/text_secondary_light" />
+        </LinearLayout>
+
+        <!-- Place cards -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="20dp">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- Place 1 (selected) -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="@color/boop_green_light"
+                    app:strokeColor="@color/boop_green"
+                    app:strokeWidth="2dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="14dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginBottom="8dp">
+                            <FrameLayout
+                                android:layout_width="36dp"
+                                android:layout_height="36dp"
+                                android:background="@drawable/bg_rounded_green"
+                                android:layout_marginEnd="10dp">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                    android:layout_gravity="center" android:text="🏥" android:textSize="16sp" />
+                            </FrameLayout>
+                            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                    android:text="Clínica Vetica" android:textSize="12sp"
+                                    android:fontFamily="@font/poppins_bold" android:textColor="@color/text_primary_light" />
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                    android:text="Veterinario" android:textSize="11sp"
+                                    android:fontFamily="@font/poppins_regular" android:textColor="@color/text_secondary_light" />
+                            </LinearLayout>
+                        </LinearLayout>
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                            android:orientation="horizontal" android:gravity="center_vertical">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="⭐ 4.8" android:textSize="11sp"
+                                android:fontFamily="@font/poppins_regular" android:textColor="@color/text_secondary_light" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="· 320m" android:textSize="11sp"
+                                android:fontFamily="@font/poppins_regular" android:textColor="@color/text_secondary_light"
+                                android:layout_marginStart="4dp" />
+                            <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="Abierto" android:textSize="11sp"
+                                android:fontFamily="@font/poppins_semibold" android:textColor="@color/boop_green" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Place 2 -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="@color/background_light">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="14dp">
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                            android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="8dp">
+                            <FrameLayout android:layout_width="36dp" android:layout_height="36dp"
+                                android:background="@drawable/bg_rounded_purple" android:layout_marginEnd="10dp">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                    android:layout_gravity="center" android:text="✂️" android:textSize="16sp" />
+                            </FrameLayout>
+                            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                    android:text="Peluquería Pets" android:textSize="12sp"
+                                    android:fontFamily="@font/poppins_bold" android:textColor="@color/text_primary_light" />
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                    android:text="Baños" android:textSize="11sp"
+                                    android:fontFamily="@font/poppins_regular" android:textColor="@color/text_secondary_light" />
+                            </LinearLayout>
+                        </LinearLayout>
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                            android:orientation="horizontal" android:gravity="center_vertical">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="⭐ 4.7" android:textSize="11sp"
+                                android:fontFamily="@font/poppins_regular" android:textColor="@color/text_secondary_light" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="· 150m" android:textSize="11sp"
+                                android:fontFamily="@font/poppins_regular" android:textColor="@color/text_secondary_light"
+                                android:layout_marginStart="4dp" />
+                            <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="Abierto" android:textSize="11sp"
+                                android:fontFamily="@font/poppins_semibold" android:textColor="@color/boop_green" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+    </LinearLayout>
+
+</FrameLayout>

@@ -18,17 +18,40 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="${MAPS_API_KEY}" />
 
+        <!-- SPLASH — punto de entrada -->
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.BOOP.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
+        <!-- ONBOARDING -->
+        <activity
+            android:name=".ui.onboarding.OnboardingActivity"
+            android:exported="false" />
+
+        <!-- LOGIN / REGISTRO -->
+        <activity
+            android:name=".ui.auth.AuthActivity"
+            android:exported="false" />
+
+        <!-- AÑADIR MASCOTA -->
+        <activity
+            android:name=".ui.addpet.AddPetActivity"
+            android:exported="false" />
+
+        <!-- HOME PRINCIPAL -->
         <activity
             android:name=".HomeActivity"
+            android:exported="false" />
+
+        <!-- AJUSTES (modo oscuro/claro/sistema + notificaciones + perfil) -->
+        <activity
+            android:name=".ui.settings.SettingsActivity"
             android:exported="false" />
 
     </application>
