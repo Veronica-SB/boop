@@ -41,7 +41,6 @@
                 android:src="@drawable/ic_plus"
                 app:tint="@color/boop_green" />
         </FrameLayout>
-
     </LinearLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -57,7 +56,7 @@
             android:orientation="vertical"
             android:padding="24dp">
 
-            <!-- Section: Urgentes -->
+            <!-- ── SECCIÓN: URGENTES ──────────────────────────────────── -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -69,8 +68,9 @@
                 android:letterSpacing="0.08"
                 android:layout_marginBottom="12dp" />
 
-            <!-- Alert item urgente -->
+            <!-- Alert card URGENTE -->
             <androidx.cardview.widget.CardView
+                android:id="@+id/card_alert_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -80,77 +80,134 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="16dp"
-                    android:gravity="center_vertical">
-                    <View
-                        android:layout_width="4dp"
-                        android:layout_height="50dp"
-                        android:background="@color/alert_red"
-                        android:layout_marginEnd="12dp" />
+                    android:orientation="vertical">
+
+                    <!-- Fila principal -->
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center_vertical">
+
+                        <!-- Barra de color urgente -->
+                        <View
+                            android:layout_width="4dp"
+                            android:layout_height="50dp"
+                            android:background="@color/alert_red"
+                            android:layout_marginEnd="12dp" />
+
                         <LinearLayout
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:layout_marginBottom="4dp">
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
                             <TextView
-                                android:layout_width="0dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1"
                                 android:text="Vacuna antirrábica"
                                 android:textSize="14sp"
                                 android:fontFamily="@font/poppins_semibold"
-                                android:textColor="@color/text_primary_light" />
-                            <!-- Toggle ON -->
-                            <View
-                                android:layout_width="40dp"
-                                android:layout_height="24dp"
-                                android:background="@drawable/bg_toggle_on" />
+                                android:textColor="@color/text_primary_light"
+                                android:layout_marginBottom="4dp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="🐶 Max · Mañana"
+                                    android:textSize="11sp"
+                                    android:fontFamily="@font/poppins_regular"
+                                    android:textColor="@color/text_secondary_light" />
+                                <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="🔴 Urgente"
+                                    android:textSize="10sp"
+                                    android:fontFamily="@font/poppins_semibold"
+                                    android:textColor="@color/alert_red"
+                                    android:background="@drawable/bg_pill_red_light"
+                                    android:paddingStart="8dp" android:paddingEnd="8dp"
+                                    android:paddingTop="3dp" android:paddingBottom="3dp" />
+                            </LinearLayout>
                         </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Franja inferior: CHECK + ELIMINAR -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:background="@color/background_light"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp">
+
+                        <!-- Check: ¿Ya lo has hecho? -->
                         <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:id="@+id/btn_check_alert_1"
+                            android:layout_width="0dp"
+                            android:layout_height="36dp"
+                            android:layout_weight="1"
                             android:orientation="horizontal"
-                            android:gravity="center_vertical">
+                            android:gravity="center_vertical"
+                            android:background="@drawable/bg_species_btn_inactive"
+                            android:layout_marginEnd="8dp"
+                            android:paddingStart="12dp"
+                            android:paddingEnd="12dp"
+                            android:clickable="true"
+                            android:focusable="true">
+                            <FrameLayout
+                                android:id="@+id/checkbox_alert_1"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:background="@drawable/bg_check_undone"
+                                android:layout_marginEnd="8dp">
+                                <ImageView
+                                    android:id="@+id/check_icon_1"
+                                    android:layout_width="14dp"
+                                    android:layout_height="14dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_check"
+                                    android:visibility="gone" />
+                            </FrameLayout>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="🐶 Max"
-                                android:textSize="11sp"
-                                android:fontFamily="@font/poppins_regular"
-                                android:textColor="@color/text_secondary_light" />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text=" · Mañana"
-                                android:textSize="11sp"
-                                android:fontFamily="@font/poppins_regular"
-                                android:textColor="@color/text_secondary_light" />
-                            <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="🔴 Urgente"
-                                android:textSize="10sp"
+                                android:text="¿Ya lo has hecho?"
+                                android:textSize="12sp"
                                 android:fontFamily="@font/poppins_semibold"
-                                android:textColor="@color/alert_red"
-                                android:background="@drawable/bg_pill_red_light"
-                                android:paddingStart="8dp"
-                                android:paddingEnd="8dp"
-                                android:paddingTop="3dp"
-                                android:paddingBottom="3dp" />
+                                android:textColor="@color/text_secondary_light" />
                         </LinearLayout>
+
+                        <!-- Eliminar -->
+                        <FrameLayout
+                            android:id="@+id/btn_delete_alert_1"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:background="@drawable/bg_ico_red"
+                            android:clickable="true"
+                            android:focusable="true">
+                            <ImageView
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_trash"
+                                app:tint="@color/alert_red" />
+                        </FrameLayout>
+
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- Section: Próximas -->
+            <!-- ── SECCIÓN: PRÓXIMAS ──────────────────────────────────── -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -163,8 +220,9 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="12dp" />
 
-            <!-- Alert item próxima -->
+            <!-- Alert card PRÓXIMA -->
             <androidx.cardview.widget.CardView
+                android:id="@+id/card_alert_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -174,77 +232,121 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="16dp"
-                    android:gravity="center_vertical">
-                    <View
-                        android:layout_width="4dp"
-                        android:layout_height="50dp"
-                        android:background="@color/alert_yellow"
-                        android:layout_marginEnd="12dp" />
+                    android:orientation="vertical">
+
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center_vertical">
+                        <View
+                            android:layout_width="4dp"
+                            android:layout_height="50dp"
+                            android:background="@color/alert_yellow"
+                            android:layout_marginEnd="12dp" />
                         <LinearLayout
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:layout_marginBottom="4dp">
+                            android:layout_weight="1"
+                            android:orientation="vertical">
                             <TextView
-                                android:layout_width="0dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1"
                                 android:text="Desparasitación interna"
                                 android:textSize="14sp"
                                 android:fontFamily="@font/poppins_semibold"
-                                android:textColor="@color/text_primary_light" />
-                            <View
-                                android:layout_width="40dp"
-                                android:layout_height="24dp"
-                                android:background="@drawable/bg_toggle_on" />
+                                android:textColor="@color/text_primary_light"
+                                android:layout_marginBottom="4dp" />
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="🐱 Luna · En 5 días"
+                                    android:textSize="11sp"
+                                    android:fontFamily="@font/poppins_regular"
+                                    android:textColor="@color/text_secondary_light" />
+                                <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="⏰ Próxima"
+                                    android:textSize="10sp"
+                                    android:fontFamily="@font/poppins_semibold"
+                                    android:textColor="@color/alert_yellow_text"
+                                    android:background="@drawable/bg_pill_yellow_light"
+                                    android:paddingStart="8dp" android:paddingEnd="8dp"
+                                    android:paddingTop="3dp" android:paddingBottom="3dp" />
+                            </LinearLayout>
                         </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:background="@color/background_light"
+                        android:paddingStart="16dp" android:paddingEnd="16dp"
+                        android:paddingTop="10dp" android:paddingBottom="10dp">
+
                         <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:id="@+id/btn_check_alert_2"
+                            android:layout_width="0dp"
+                            android:layout_height="36dp"
+                            android:layout_weight="1"
                             android:orientation="horizontal"
-                            android:gravity="center_vertical">
+                            android:gravity="center_vertical"
+                            android:background="@drawable/bg_species_btn_inactive"
+                            android:layout_marginEnd="8dp"
+                            android:paddingStart="12dp" android:paddingEnd="12dp"
+                            android:clickable="true" android:focusable="true">
+                            <FrameLayout
+                                android:id="@+id/checkbox_alert_2"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:background="@drawable/bg_check_undone"
+                                android:layout_marginEnd="8dp">
+                                <ImageView
+                                    android:id="@+id/check_icon_2"
+                                    android:layout_width="14dp"
+                                    android:layout_height="14dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_check"
+                                    android:visibility="gone" />
+                            </FrameLayout>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="🐱 Luna"
-                                android:textSize="11sp"
-                                android:fontFamily="@font/poppins_regular"
-                                android:textColor="@color/text_secondary_light" />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text=" · En 5 días"
-                                android:textSize="11sp"
-                                android:fontFamily="@font/poppins_regular"
-                                android:textColor="@color/text_secondary_light" />
-                            <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="⏰ Próxima"
-                                android:textSize="10sp"
+                                android:text="¿Ya lo has hecho?"
+                                android:textSize="12sp"
                                 android:fontFamily="@font/poppins_semibold"
-                                android:textColor="@color/alert_yellow_text"
-                                android:background="@drawable/bg_pill_yellow_light"
-                                android:paddingStart="8dp"
-                                android:paddingEnd="8dp"
-                                android:paddingTop="3dp"
-                                android:paddingBottom="3dp" />
+                                android:textColor="@color/text_secondary_light" />
                         </LinearLayout>
+
+                        <FrameLayout
+                            android:id="@+id/btn_delete_alert_2"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:background="@drawable/bg_ico_red"
+                            android:clickable="true" android:focusable="true">
+                            <ImageView
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_trash"
+                                app:tint="@color/alert_red" />
+                        </FrameLayout>
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- Alert item al día -->
+            <!-- Alert card AL DÍA (ya marcada como hecha) -->
             <androidx.cardview.widget.CardView
+                android:id="@+id/card_alert_3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -254,76 +356,120 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="16dp"
-                    android:gravity="center_vertical">
-                    <View
-                        android:layout_width="4dp"
-                        android:layout_height="50dp"
-                        android:background="@color/boop_green"
-                        android:layout_marginEnd="12dp" />
+                    android:orientation="vertical">
+
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center_vertical">
+                        <View
+                            android:layout_width="4dp"
+                            android:layout_height="50dp"
+                            android:background="@color/boop_green"
+                            android:layout_marginEnd="12dp" />
                         <LinearLayout
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:layout_marginBottom="4dp">
+                            android:layout_weight="1"
+                            android:orientation="vertical">
                             <TextView
-                                android:layout_width="0dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1"
                                 android:text="Revisión anual"
                                 android:textSize="14sp"
                                 android:fontFamily="@font/poppins_semibold"
-                                android:textColor="@color/text_primary_light" />
-                            <View
-                                android:layout_width="40dp"
-                                android:layout_height="24dp"
-                                android:background="@drawable/bg_toggle_off" />
+                                android:textColor="@color/text_primary_light"
+                                android:layout_marginBottom="4dp" />
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="🐶 Max · En 3 semanas"
+                                    android:textSize="11sp"
+                                    android:fontFamily="@font/poppins_regular"
+                                    android:textColor="@color/text_secondary_light" />
+                                <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="✅ Hecho"
+                                    android:textSize="10sp"
+                                    android:fontFamily="@font/poppins_semibold"
+                                    android:textColor="@color/boop_green_dark"
+                                    android:background="@drawable/bg_pill_green_light"
+                                    android:paddingStart="8dp" android:paddingEnd="8dp"
+                                    android:paddingTop="3dp" android:paddingBottom="3dp" />
+                            </LinearLayout>
                         </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Franja: marcado como hecho (verde) + eliminar -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:background="@color/boop_green_light"
+                        android:paddingStart="16dp" android:paddingEnd="16dp"
+                        android:paddingTop="10dp" android:paddingBottom="10dp">
+
                         <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:id="@+id/btn_check_alert_3"
+                            android:layout_width="0dp"
+                            android:layout_height="36dp"
+                            android:layout_weight="1"
                             android:orientation="horizontal"
-                            android:gravity="center_vertical">
+                            android:gravity="center_vertical"
+                            android:background="@drawable/bg_species_btn_active"
+                            android:layout_marginEnd="8dp"
+                            android:paddingStart="12dp" android:paddingEnd="12dp"
+                            android:clickable="true" android:focusable="true">
+                            <FrameLayout
+                                android:id="@+id/checkbox_alert_3"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:background="@drawable/bg_check_done"
+                                android:layout_marginEnd="8dp">
+                                <ImageView
+                                    android:id="@+id/check_icon_3"
+                                    android:layout_width="14dp"
+                                    android:layout_height="14dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_check"
+                                    android:visibility="visible" />
+                            </FrameLayout>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="🐶 Max"
-                                android:textSize="11sp"
-                                android:fontFamily="@font/poppins_regular"
-                                android:textColor="@color/text_secondary_light" />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text=" · En 3 semanas"
-                                android:textSize="11sp"
-                                android:fontFamily="@font/poppins_regular"
-                                android:textColor="@color/text_secondary_light" />
-                            <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="✅ Al día"
-                                android:textSize="10sp"
+                                android:text="¡Marcado como hecho!"
+                                android:textSize="12sp"
                                 android:fontFamily="@font/poppins_semibold"
-                                android:textColor="@color/boop_green_dark"
-                                android:background="@drawable/bg_pill_green_light"
-                                android:paddingStart="8dp"
-                                android:paddingEnd="8dp"
-                                android:paddingTop="3dp"
-                                android:paddingBottom="3dp" />
+                                android:textColor="@color/boop_green_dark" />
                         </LinearLayout>
+
+                        <FrameLayout
+                            android:id="@+id/btn_delete_alert_3"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:background="@drawable/bg_ico_red"
+                            android:clickable="true" android:focusable="true">
+                            <ImageView
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_trash"
+                                app:tint="@color/alert_red" />
+                        </FrameLayout>
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- FAB-style button: Nuevo recordatorio -->
+            <!-- Botón nuevo recordatorio -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_create_alert"
                 android:layout_width="match_parent"

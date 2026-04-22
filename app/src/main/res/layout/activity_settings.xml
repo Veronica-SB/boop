@@ -188,8 +188,21 @@
                             android:fontFamily="@font/poppins_regular" android:textColor="@color/text_secondary_light"
                             android:layout_marginTop="2dp" />
                     </LinearLayout>
-                    <ImageView android:layout_width="16dp" android:layout_height="16dp"
-                        android:src="@drawable/ic_chevron_right" app:tint="@color/text_tertiary_light" />
+                    <FrameLayout
+                        android:id="@+id/btn_delete_pet_1"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:background="@drawable/bg_ico_red"
+                        android:layout_marginStart="8dp"
+                        android:clickable="true"
+                        android:focusable="true">
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_trash"
+                            app:tint="@color/alert_red" />
+                    </FrameLayout>
                 </LinearLayout>
 
                 <View android:layout_width="match_parent" android:layout_height="1dp"
@@ -224,8 +237,21 @@
                             android:fontFamily="@font/poppins_regular" android:textColor="@color/text_secondary_light"
                             android:layout_marginTop="2dp" />
                     </LinearLayout>
-                    <ImageView android:layout_width="16dp" android:layout_height="16dp"
-                        android:src="@drawable/ic_chevron_right" app:tint="@color/text_tertiary_light" />
+                    <FrameLayout
+                        android:id="@+id/btn_delete_pet_2"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:background="@drawable/bg_ico_red"
+                        android:layout_marginStart="8dp"
+                        android:clickable="true"
+                        android:focusable="true">
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_trash"
+                            app:tint="@color/alert_red" />
+                    </FrameLayout>
                 </LinearLayout>
 
                 <View android:layout_width="match_parent" android:layout_height="1dp"

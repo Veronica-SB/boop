@@ -255,7 +255,7 @@
 
                 <!-- Otro -->
                 <LinearLayout
-                    android:id="@+id/btn_species_other"
+                    android:id="@+id/btn_species_bird"
                     android:layout_width="0dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"

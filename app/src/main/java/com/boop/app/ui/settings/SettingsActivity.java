@@ -7,6 +7,9 @@ import com.boop.app.R;
 import com.boop.app.ui.addpet.AddPetActivity;
 import com.boop.app.utils.ThemeManager;
 import android.content.Intent;
+import androidx.appcompat.app.AlertDialog;
+import android.view.ViewGroup;
+
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -43,13 +46,17 @@ public class SettingsActivity extends AppCompatActivity {
         findViewById(R.id.row_add_pet).setOnClickListener(v ->
                 startActivity(new Intent(this, AddPetActivity.class)));
 
-        // Mascotas existentes (maqueta)
+        // Mascotas existentes — abrir detalle
         findViewById(R.id.row_pet_1).setOnClickListener(v -> {
             // TODO: Abrir detalle de mascota Mochi
         });
         findViewById(R.id.row_pet_2).setOnClickListener(v -> {
             // TODO: Abrir detalle de mascota Tofu
         });
+
+        // Eliminar mascotas
+        setupDeletePet(R.id.btn_delete_pet_1, "Mochi");
+        setupDeletePet(R.id.btn_delete_pet_2, "Tofu");
 
         // Cerrar sesión
         findViewById(R.id.row_logout).setOnClickListener(v -> {
@@ -102,4 +109,23 @@ public class SettingsActivity extends AppCompatActivity {
             // TODO: Persistir preferencia de notificación
         });
     }
+    /** Confirma y elimina la fila de una mascota visualmente. */
+    private void setupDeletePet(int btnId, String petName) {
+        View btn = findViewById(btnId);
+        if (btn == null) return;
+        btn.setOnClickListener(v -> new AlertDialog.Builder(this)
+                .setTitle("Eliminar mascota")
+                .setMessage("¿Seguro que quieres eliminar a " + petName + "?\nEsta acción no se puede deshacer.")
+                .setPositiveButton("Eliminar", (dialog, which) -> {
+                    // Subir por el árbol de vistas hasta la fila (LinearLayout padre)
+                    android.view.View row = (android.view.View) btn.getParent();
+                    if (row != null && row.getParent() instanceof ViewGroup) {
+                        ((ViewGroup) row.getParent()).removeView(row);
+                    }
+                    // TODO: Eliminar de Firestore
+                })
+                .setNegativeButton("Cancelar", null)
+                .show());
+    }
+
 }
