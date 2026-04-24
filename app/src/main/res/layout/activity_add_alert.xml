@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Añadir recordatorio (bottom sheet) -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_bottom_sheet"
+    android:paddingBottom="32dp">
+
+    <!-- Header con botón superior -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <FrameLayout
+            android:id="@+id/btn_back"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@drawable/bg_circle_green_light"
+            android:clickable="true"
+            android:focusable="true">
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_arrow_back"
+                app:tint="@color/boop_green" />
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Nuevo recordatorio"
+            android:textSize="18sp"
+            android:fontFamily="@font/poppins_bold"
+            android:textColor="@color/text_primary_light" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_save_alert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="Guardar"
+            android:textSize="13sp"
+            android:fontFamily="@font/poppins_bold"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/boop_green"
+            app:cornerRadius="12dp" />
+    </RelativeLayout>
+
+    <TextView android:id="@+id/tv_add_alert_pet" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:text="Para Mochi · Gata europea"
+        android:textSize="12sp" android:fontFamily="@font/poppins_regular"
+        android:textColor="@color/text_secondary_light"
+        android:paddingStart="24dp" android:paddingEnd="24dp" android:layout_marginBottom="20dp" />
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:paddingStart="24dp" android:paddingEnd="24dp">
+
+        <!-- Tipo de recordatorio (icon grid) -->
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Tipo" android:textSize="13sp" android:fontFamily="@font/poppins_semibold"
+            android:textColor="@color/text_primary_light" android:layout_marginBottom="10dp" />
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:layout_marginBottom="16dp">
+            <LinearLayout android:id="@+id/btn_type_vaccine" android:layout_width="0dp"
+                android:layout_height="64dp" android:layout_weight="1" android:orientation="vertical"
+                android:gravity="center" android:background="@drawable/bg_species_btn_active"
+                android:layout_marginEnd="6dp" android:clickable="true" android:focusable="true">
+                <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                    android:src="@drawable/ic_vaccine" app:tint="@color/boop_green" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Vacuna" android:textSize="10sp" android:fontFamily="@font/poppins_semibold"
+                    android:textColor="@color/boop_green_dark" android:layout_marginTop="4dp" />
+            </LinearLayout>
+            <LinearLayout android:id="@+id/btn_type_med" android:layout_width="0dp"
+                android:layout_height="64dp" android:layout_weight="1" android:orientation="vertical"
+                android:gravity="center" android:background="@drawable/bg_species_btn_inactive"
+                android:layout_marginEnd="6dp" android:clickable="true" android:focusable="true">
+                <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                    android:src="@drawable/ic_medication" app:tint="@color/text_secondary_light" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Medicación" android:textSize="10sp" android:fontFamily="@font/poppins_semibold"
+                    android:textColor="@color/text_secondary_light" android:layout_marginTop="4dp" />
+            </LinearLayout>
+            <LinearLayout android:id="@+id/btn_type_vet" android:layout_width="0dp"
+                android:layout_height="64dp" android:layout_weight="1" android:orientation="vertical"
+                android:gravity="center" android:background="@drawable/bg_species_btn_inactive"
+                android:layout_marginEnd="6dp" android:clickable="true" android:focusable="true">
+                <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                    android:src="@drawable/ic_stethoscope" app:tint="@color/text_secondary_light" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Cita vet." android:textSize="10sp" android:fontFamily="@font/poppins_semibold"
+                    android:textColor="@color/text_secondary_light" android:layout_marginTop="4dp" />
+            </LinearLayout>
+            <LinearLayout android:id="@+id/btn_type_deworming" android:layout_width="0dp"
+                android:layout_height="64dp" android:layout_weight="1" android:orientation="vertical"
+                android:gravity="center" android:background="@drawable/bg_species_btn_inactive"
+                android:layout_marginEnd="6dp" android:clickable="true" android:focusable="true">
+                <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                    android:src="@drawable/ic_deworming" app:tint="@color/text_secondary_light" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Desparasitar" android:textSize="10sp" android:fontFamily="@font/poppins_semibold"
+                    android:textColor="@color/text_secondary_light" android:layout_marginTop="4dp" />
+            </LinearLayout>
+            <LinearLayout android:id="@+id/btn_type_other" android:layout_width="0dp"
+                android:layout_height="64dp" android:layout_weight="1" android:orientation="vertical"
+                android:gravity="center" android:background="@drawable/bg_species_btn_inactive"
+                android:clickable="true" android:focusable="true">
+                <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                    android:src="@drawable/ic_more" app:tint="@color/text_secondary_light" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Otro" android:textSize="10sp" android:fontFamily="@font/poppins_semibold"
+                    android:textColor="@color/text_secondary_light" android:layout_marginTop="4dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Descripción * -->
+        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:gravity="center_vertical"
+            android:layout_marginBottom="8dp">
+            <TextView android:id="@+id/tv_label_description"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Descripción" android:textSize="13sp"
+                android:fontFamily="@font/poppins_semibold" android:textColor="@color/text_primary_light" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text=" *" android:textSize="13sp" android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/alert_red" />
+        </LinearLayout>
+        <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_marginBottom="16dp"
+            app:boxCornerRadiusBottomEnd="12dp" app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp" app:boxCornerRadiusTopStart="12dp"
+            app:boxStrokeColor="@color/boop_green" app:boxBackgroundColor="@color/boop_green_light"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            <com.google.android.material.textfield.TextInputEditText android:id="@+id/et_alert_description"
+                android:layout_width="match_parent" android:layout_height="56dp"
+                android:hint="Vacuna antirrábica" android:fontFamily="@font/poppins_regular"
+                android:textSize="14sp" android:textColor="@color/text_primary_light" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Fecha + Hora -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:layout_marginBottom="16dp">
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:orientation="vertical" android:layout_marginEnd="12dp">
+                <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical"
+                    android:layout_marginBottom="8dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Fecha" android:textSize="13sp" android:fontFamily="@font/poppins_semibold"
+                        android:textColor="@color/text_primary_light" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text=" *" android:textSize="13sp" android:fontFamily="@font/poppins_bold"
+                        android:textColor="@color/alert_red" />
+                </LinearLayout>
+                <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:boxCornerRadiusBottomEnd="12dp" app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp" app:boxCornerRadiusTopStart="12dp"
+                    app:boxStrokeColor="@color/border_light" app:boxBackgroundColor="@color/background_light"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText android:id="@+id/et_alert_date"
+                        android:layout_width="match_parent" android:layout_height="56dp"
+                        android:hint="DD/MM/AAAA" android:fontFamily="@font/poppins_regular"
+                        android:textSize="14sp" android:inputType="date"
+                        android:textColor="@color/text_primary_light" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:orientation="vertical">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Hora" android:textSize="13sp" android:fontFamily="@font/poppins_semibold"
+                    android:textColor="@color/text_primary_light" android:layout_marginBottom="8dp" />
+                <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:boxCornerRadiusBottomEnd="12dp" app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp" app:boxCornerRadiusTopStart="12dp"
+                    app:boxStrokeColor="@color/border_light" app:boxBackgroundColor="@color/background_light"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText android:id="@+id/et_alert_time"
+                        android:layout_width="match_parent" android:layout_height="56dp"
+                        android:hint="10:00" android:fontFamily="@font/poppins_regular"
+                        android:textSize="14sp" android:inputType="time"
+                        android:textColor="@color/text_primary_light" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Repetir: opciones simplificadas (No / Diaria / Mensual / Anual) -->
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Repetir" android:textSize="13sp" android:fontFamily="@font/poppins_semibold"
+            android:textColor="@color/text_primary_light" android:layout_marginBottom="10dp" />
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:layout_marginBottom="24dp">
+
+            <TextView android:id="@+id/btn_repeat_none" android:layout_width="0dp"
+                android:layout_height="36dp" android:layout_weight="1" android:gravity="center"
+                android:text="@string/repeat_none" android:textSize="11sp"
+                android:fontFamily="@font/poppins_semibold" android:textColor="@color/boop_green_dark"
+                android:background="@drawable/bg_chip_active"
+                android:paddingStart="8dp" android:paddingEnd="8dp" android:layout_marginEnd="6dp"
+                android:clickable="true" android:focusable="true" />
+
+            <TextView android:id="@+id/btn_repeat_daily" android:layout_width="0dp"
+                android:layout_height="36dp" android:layout_weight="1" android:gravity="center"
+                android:text="@string/repeat_daily" android:textSize="11sp"
+                android:fontFamily="@font/poppins_semibold" android:textColor="@color/text_secondary_light"
+                android:background="@drawable/bg_chip_inactive"
+                android:paddingStart="8dp" android:paddingEnd="8dp" android:layout_marginEnd="6dp"
+                android:clickable="true" android:focusable="true" />
+
+            <TextView android:id="@+id/btn_repeat_monthly" android:layout_width="0dp"
+                android:layout_height="36dp" android:layout_weight="1" android:gravity="center"
+                android:text="@string/repeat_monthly" android:textSize="11sp"
+                android:fontFamily="@font/poppins_semibold" android:textColor="@color/text_secondary_light"
+                android:background="@drawable/bg_chip_inactive"
+                android:paddingStart="8dp" android:paddingEnd="8dp" android:layout_marginEnd="6dp"
+                android:clickable="true" android:focusable="true" />
+
+            <TextView android:id="@+id/btn_repeat_yearly" android:layout_width="0dp"
+                android:layout_height="36dp" android:layout_weight="1" android:gravity="center"
+                android:text="@string/repeat_yearly" android:textSize="11sp"
+                android:fontFamily="@font/poppins_semibold" android:textColor="@color/text_secondary_light"
+                android:background="@drawable/bg_chip_inactive"
+                android:paddingStart="8dp" android:paddingEnd="8dp"
+                android:clickable="true" android:focusable="true" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -24,29 +24,30 @@
             android:paddingBottom="14dp"
             android:gravity="center_vertical">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Comuni\u003cfont color=\'#33CC99\'\u003edad\u003c/font\u003e"
-                android:textSize="22sp"
-                android:fontFamily="@font/poppins_bold"
-                android:textColor="@color/text_primary_light" />
-
             <FrameLayout
-                android:id="@+id/btn_new_post"
+                android:id="@+id/btn_back_community"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:background="@drawable/bg_circle_green_light"
                 android:clickable="true"
-                android:focusable="true">
+                android:focusable="true"
+                android:layout_marginEnd="12dp">
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_plus"
+                    android:src="@drawable/ic_arrow_back"
                     app:tint="@color/boop_green" />
             </FrameLayout>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Comunidad"
+                android:textSize="22sp"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/text_primary_light" />
         </LinearLayout>
 
         <!-- Tabs -->
@@ -127,7 +128,7 @@
         </HorizontalScrollView>
     </LinearLayout>
 
-    <!-- Scrollable content -->
+    <!-- Content -->
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -139,535 +140,47 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Stories row -->
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scrollbars="none"
-                android:paddingTop="14dp"
-                android:paddingBottom="8dp"
-                android:paddingStart="24dp"
-                android:paddingEnd="24dp">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <!-- Add story -->
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:layout_marginEnd="12dp"
-                        android:clickable="true"
-                        android:focusable="true">
-                        <FrameLayout
-                            android:layout_width="56dp"
-                            android:layout_height="56dp"
-                            android:background="@drawable/bg_story_ring_gray">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="+"
-                                android:textSize="22sp"
-                                android:fontFamily="@font/poppins_regular"
-                                android:textColor="@color/boop_green" />
-                        </FrameLayout>
-                        <TextView
-                            android:layout_width="60dp"
-                            android:layout_height="wrap_content"
-                            android:text="Publicar"
-                            android:textSize="10sp"
-                            android:fontFamily="@font/poppins_semibold"
-                            android:textColor="@color/text_secondary_light"
-                            android:gravity="center"
-                            android:layout_marginTop="6dp" />
-                    </LinearLayout>
-
-                    <!-- Story 1 -->
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:layout_marginEnd="12dp"
-                        android:clickable="true"
-                        android:focusable="true">
-                        <FrameLayout
-                            android:layout_width="56dp"
-                            android:layout_height="56dp"
-                            android:background="@drawable/bg_story_ring_orange">
-                            <ImageView
-                                android:layout_width="48dp"
-                                android:layout_height="48dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/ic_dog"
-                                android:background="@color/white"
-                                android:padding="6dp"
-                                android:scaleType="centerInside" />
-                        </FrameLayout>
-                        <TextView
-                            android:layout_width="60dp"
-                            android:layout_height="wrap_content"
-                            android:text="Max busca hogar"
-                            android:textSize="10sp"
-                            android:fontFamily="@font/poppins_semibold"
-                            android:textColor="@color/text_secondary_light"
-                            android:gravity="center"
-                            android:layout_marginTop="6dp" />
-                    </LinearLayout>
-
-                    <!-- Story 2 -->
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:layout_marginEnd="12dp"
-                        android:clickable="true"
-                        android:focusable="true">
-                        <FrameLayout
-                            android:layout_width="56dp"
-                            android:layout_height="56dp"
-                            android:background="@drawable/bg_story_ring_green">
-                            <ImageView
-                                android:layout_width="48dp"
-                                android:layout_height="48dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/ic_cat"
-                                android:background="@color/white"
-                                android:padding="6dp"
-                                android:scaleType="centerInside" />
-                        </FrameLayout>
-                        <TextView
-                            android:layout_width="60dp"
-                            android:layout_height="wrap_content"
-                            android:text="Protectora SOS"
-                            android:textSize="10sp"
-                            android:fontFamily="@font/poppins_semibold"
-                            android:textColor="@color/text_secondary_light"
-                            android:gravity="center"
-                            android:layout_marginTop="6dp" />
-                    </LinearLayout>
-
-                </LinearLayout>
-            </HorizontalScrollView>
-
-            <!-- Compose box -->
-            <LinearLayout
-                android:id="@+id/compose_box"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:background="@color/surface_light"
-                android:padding="16dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginBottom="12dp"
-                android:clickable="true"
-                android:focusable="true">
-                <!-- background via card -->
-            </LinearLayout>
-
-            <!-- Section: En adopción -->
+            <!-- Search + Publish Row -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingStart="24dp"
-                android:paddingEnd="24dp"
-                android:paddingBottom="12dp"
+                android:padding="20dp"
                 android:gravity="center_vertical">
-                <TextView
+
+                <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:layout_weight="1"
-                    android:text="En adopción cerca de ti"
-                    android:textSize="15sp"
-                    android:fontFamily="@font/poppins_bold"
-                    android:textColor="@color/text_primary_light" />
-                <TextView
+                    android:background="@drawable/bg_search_bar"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="16dp">
+                    <ImageView android:layout_width="16dp" android:layout_height="16dp"
+                        android:src="@drawable/ic_search" app:tint="@color/text_tertiary_light" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Buscar en la comunidad..." android:layout_marginStart="10dp"
+                        android:textColor="@color/text_secondary_light" android:textSize="13sp" />
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_new_post"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Ver todos"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="12dp"
+                    android:text="+ Publicar"
                     android:textSize="12sp"
-                    android:fontFamily="@font/poppins_semibold"
-                    android:textColor="@color/boop_green"
-                    android:clickable="true"
-                    android:focusable="true" />
-            </LinearLayout>
-
-            <!-- Adopt cards scroll -->
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scrollbars="none"
-                android:paddingStart="24dp"
-                android:paddingEnd="24dp"
-                android:paddingBottom="16dp">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <!-- Adopt card 1 -->
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="155dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="12dp"
-                        app:cardCornerRadius="12dp"
-                        app:cardElevation="2dp"
-                        app:cardBackgroundColor="@color/surface_light">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-                            <FrameLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="110dp"
-                                android:background="@color/boop_green_light">
-                                <ImageView
-                                    android:layout_width="90dp"
-                                    android:layout_height="90dp"
-                                    android:layout_gravity="center"
-                                    android:src="@drawable/ic_dog"
-                                    android:scaleType="centerInside" />
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="top|end"
-                                    android:layout_margin="8dp"
-                                    android:text="Urgente"
-                                    android:textSize="9sp"
-                                    android:fontFamily="@font/poppins_bold"
-                                    android:textColor="@color/white"
-                                    android:background="@drawable/bg_pill_orange"
-                                    android:paddingStart="7dp"
-                                    android:paddingEnd="7dp"
-                                    android:paddingTop="3dp"
-                                    android:paddingBottom="3dp" />
-                            </FrameLayout>
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:padding="10dp">
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Max"
-                                    android:textSize="13sp"
-                                    android:fontFamily="@font/poppins_bold"
-                                    android:textColor="@color/text_primary_light" />
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Labrador · 2 años · Macho"
-                                    android:textSize="11sp"
-                                    android:fontFamily="@font/poppins_regular"
-                                    android:textColor="@color/text_secondary_light"
-                                    android:layout_marginTop="2dp" />
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="📍 L'Hospitalet · 1.2km"
-                                    android:textSize="11sp"
-                                    android:fontFamily="@font/poppins_semibold"
-                                    android:textColor="@color/boop_green_dark"
-                                    android:layout_marginTop="4dp" />
-                            </LinearLayout>
-                        </LinearLayout>
-                    </androidx.cardview.widget.CardView>
-
-                    <!-- Adopt card 2 -->
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="155dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="12dp"
-                        app:cardCornerRadius="12dp"
-                        app:cardElevation="2dp"
-                        app:cardBackgroundColor="@color/surface_light">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-                            <FrameLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="110dp"
-                                android:background="@color/boop_green_light">
-                                <ImageView
-                                    android:layout_width="90dp"
-                                    android:layout_height="90dp"
-                                    android:layout_gravity="center"
-                                    android:src="@drawable/ic_cat"
-                                    android:scaleType="centerInside" />
-                            </FrameLayout>
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:padding="10dp">
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Luna"
-                                    android:textSize="13sp"
-                                    android:fontFamily="@font/poppins_bold"
-                                    android:textColor="@color/text_primary_light" />
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Europea · 1 año · Hembra"
-                                    android:textSize="11sp"
-                                    android:fontFamily="@font/poppins_regular"
-                                    android:textColor="@color/text_secondary_light"
-                                    android:layout_marginTop="2dp" />
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="📍 Barcelona · 2.8km"
-                                    android:textSize="11sp"
-                                    android:fontFamily="@font/poppins_semibold"
-                                    android:textColor="@color/boop_green_dark"
-                                    android:layout_marginTop="4dp" />
-                            </LinearLayout>
-                        </LinearLayout>
-                    </androidx.cardview.widget.CardView>
-
-                </LinearLayout>
-            </HorizontalScrollView>
-
-            <!-- Section: últimas publicaciones -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingStart="24dp"
-                android:paddingEnd="24dp"
-                android:paddingBottom="12dp"
-                android:gravity="center_vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Últimas publicaciones"
-                    android:textSize="15sp"
                     android:fontFamily="@font/poppins_bold"
-                    android:textColor="@color/text_primary_light" />
+                    android:textColor="@color/white"
+                    app:backgroundTint="@color/boop_green"
+                    app:cornerRadius="24dp" />
             </LinearLayout>
 
-            <!-- Post card 1 -->
-            <androidx.cardview.widget.CardView
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_community_feed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginBottom="12dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="1dp"
-                app:cardBackgroundColor="@color/surface_light">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <!-- Post header -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="13dp"
-                        android:gravity="center_vertical">
-                        <FrameLayout
-                            android:layout_width="34dp"
-                            android:layout_height="34dp"
-                            android:background="@drawable/bg_circle_green_light"
-                            android:layout_marginEnd="10dp">
-                            <ImageView
-                                android:layout_width="28dp"
-                                android:layout_height="28dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/ic_cat"
-                                android:scaleType="centerInside" />
-                        </FrameLayout>
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Ana M."
-                                android:textSize="13sp"
-                                android:fontFamily="@font/poppins_bold"
-                                android:textColor="@color/text_primary_light" />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Hace 23 min"
-                                android:textSize="11sp"
-                                android:fontFamily="@font/poppins_regular"
-                                android:textColor="@color/text_tertiary_light" />
-                        </LinearLayout>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="❓ Pregunta"
-                            android:textSize="10sp"
-                            android:fontFamily="@font/poppins_bold"
-                            android:textColor="#E65100"
-                            android:background="@drawable/bg_pill_orange_light"
-                            android:paddingStart="10dp"
-                            android:paddingEnd="10dp"
-                            android:paddingTop="4dp"
-                            android:paddingBottom="4dp" />
-                    </LinearLayout>
-                    <!-- Post body -->
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Mi gata lleva 2 días sin comer bien. ¿Habéis probado NutriPlus?"
-                        android:textSize="13sp"
-                        android:fontFamily="@font/poppins_regular"
-                        android:textColor="@color/text_primary_light"
-                        android:paddingStart="13dp"
-                        android:paddingEnd="13dp"
-                        android:paddingBottom="12dp"
-                        android:lineSpacingMultiplier="1.4" />
-                    <!-- Post actions -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:paddingStart="13dp"
-                        android:paddingEnd="13dp"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
-                        android:background="@drawable/bg_border_top">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="💬 8"
-                            android:textSize="12sp"
-                            android:fontFamily="@font/poppins_semibold"
-                            android:textColor="@color/text_secondary_light"
-                            android:layout_marginEnd="16dp" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="❤️ 14"
-                            android:textSize="12sp"
-                            android:fontFamily="@font/poppins_semibold"
-                            android:textColor="@color/alert_red" />
-                    </LinearLayout>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <!-- Post card 2 -->
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginBottom="12dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="1dp"
-                app:cardBackgroundColor="@color/surface_light">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="13dp"
-                        android:gravity="center_vertical">
-                        <FrameLayout
-                            android:layout_width="34dp"
-                            android:layout_height="34dp"
-                            android:background="@drawable/bg_circle_green_light"
-                            android:layout_marginEnd="10dp">
-                            <ImageView
-                                android:layout_width="28dp"
-                                android:layout_height="28dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/ic_dog"
-                                android:scaleType="centerInside" />
-                        </FrameLayout>
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Carlos V."
-                                android:textSize="13sp"
-                                android:fontFamily="@font/poppins_bold"
-                                android:textColor="@color/text_primary_light" />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Hace 1h"
-                                android:textSize="11sp"
-                                android:fontFamily="@font/poppins_regular"
-                                android:textColor="@color/text_tertiary_light" />
-                        </LinearLayout>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="🔄 Intercambio"
-                            android:textSize="10sp"
-                            android:fontFamily="@font/poppins_bold"
-                            android:textColor="#6A1B9A"
-                            android:background="@drawable/bg_pill_purple_light"
-                            android:paddingStart="10dp"
-                            android:paddingEnd="10dp"
-                            android:paddingTop="4dp"
-                            android:paddingBottom="4dp" />
-                    </LinearLayout>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Arnés Ruffwear talla M en perfecto estado. Lo dono a quien lo necesite."
-                        android:textSize="13sp"
-                        android:fontFamily="@font/poppins_regular"
-                        android:textColor="@color/text_primary_light"
-                        android:paddingStart="13dp"
-                        android:paddingEnd="13dp"
-                        android:paddingBottom="12dp"
-                        android:lineSpacingMultiplier="1.4" />
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:paddingStart="13dp"
-                        android:paddingEnd="13dp"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
-                        android:background="@drawable/bg_border_top">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="💬 3"
-                            android:textSize="12sp"
-                            android:fontFamily="@font/poppins_semibold"
-                            android:textColor="@color/text_secondary_light"
-                            android:layout_marginEnd="16dp" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="❤️ 22"
-                            android:textSize="12sp"
-                            android:fontFamily="@font/poppins_semibold"
-                            android:textColor="@color/alert_red" />
-                    </LinearLayout>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+                android:nestedScrollingEnabled="false" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

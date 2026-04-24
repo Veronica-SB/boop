@@ -14,9 +14,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BOOP">
 
+        <!--
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="${MAPS_API_KEY}" />
+        -->
 
         <!-- SPLASH — punto de entrada -->
         <activity
@@ -52,6 +54,32 @@
         <!-- AJUSTES (modo oscuro/claro/sistema + notificaciones + perfil) -->
         <activity
             android:name=".ui.settings.SettingsActivity"
+            android:exported="false" />
+
+        <!-- COMUNIDAD - CREAR POST -->
+        <activity
+            android:name=".ui.community.CreatePostActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- HISTORIAL MÉDICO - AÑADIR VISITA -->
+        <activity
+            android:name=".ui.medical.AddMedicalVisitActivity"
+            android:exported="false" />
+
+        <!-- CUIDADORES -->
+        <activity
+            android:name=".ui.settings.GuardiansActivity"
+            android:exported="false" />
+
+        <!-- VACUNAS -->
+        <activity
+            android:name=".ui.medical.VaccinesActivity"
+            android:exported="false" />
+
+        <!-- RECORDATORIOS - AÑADIR -->
+        <activity
+            android:name=".ui.alerts.AddAlertActivity"
             android:exported="false" />
 
     </application>

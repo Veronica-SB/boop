@@ -25,7 +25,7 @@
                 android:layout_width="140dp"
                 android:layout_height="140dp"
                 android:src="@drawable/logo_boop"
-                android:colorFilter="@android:color/white"
+                app:tint="@android:color/white"
                 android:scaleType="centerInside" />
 
             <TextView
@@ -87,6 +87,49 @@
                     android:focusable="true" />
             </LinearLayout>
 
+            <!-- Name field (only for Register) -->
+            <LinearLayout
+                android:id="@+id/layout_name_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nombre completo"
+                    android:textSize="13sp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textColor="@color/text_primary_light"
+                    android:layout_marginBottom="8dp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:hintEnabled="false"
+                    app:boxCornerRadiusBottomEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusTopStart="12dp"
+                    app:boxStrokeColor="@color/border_light"
+                    app:boxBackgroundColor="@color/background_light"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:hint="Tu nombre"
+                        android:inputType="textPersonName"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textSize="14sp"
+                        android:textColor="@color/text_primary_light" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
             <!-- Email field -->
             <TextView
                 android:layout_width="wrap_content"
@@ -102,6 +145,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
+                app:hintEnabled="false"
                 app:boxCornerRadiusBottomEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
@@ -136,6 +180,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
+                app:hintEnabled="false"
                 app:boxCornerRadiusBottomEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
@@ -218,23 +263,7 @@
                 app:strokeWidth="1dp"
                 app:cornerRadius="20dp"
                 app:elevation="0dp"
-                android:layout_marginBottom="12dp" />
-
-            <!-- Apple button -->
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_apple"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:text="   Continuar con Apple"
-                android:textSize="14sp"
-                android:fontFamily="@font/poppins_semibold"
-                android:textColor="@color/text_primary_light"
-                app:backgroundTint="@color/surface_light"
-                app:strokeColor="@color/border_light"
-                app:strokeWidth="1dp"
-                app:cornerRadius="20dp"
-                app:elevation="0dp"
-                android:layout_marginBottom="24dp" />
+                android:layout_marginBottom="28dp" />
 
             <!-- Terms footer -->
             <TextView

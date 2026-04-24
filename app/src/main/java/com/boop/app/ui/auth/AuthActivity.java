@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.boop.app.R;
 import com.boop.app.ui.addpet.AddPetActivity;
 import com.google.android.material.button.MaterialButton;
+import android.view.View;
 
 public class AuthActivity extends AppCompatActivity {
 
@@ -24,7 +25,7 @@ public class AuthActivity extends AppCompatActivity {
         MaterialButton btnSubmit = findViewById(R.id.btn_auth_submit);
         TextView tvForgot    = findViewById(R.id.tv_forgot);
         MaterialButton btnGoogle = findViewById(R.id.btn_google);
-        MaterialButton btnApple  = findViewById(R.id.btn_apple);
+        View layoutNameField = findViewById(R.id.layout_name_field);
 
         // ── Cambio de tab Login / Registro ──────────────────────────────────
         tabLogin.setOnClickListener(v -> {
@@ -34,6 +35,8 @@ public class AuthActivity extends AppCompatActivity {
             tabRegister.setBackgroundResource(android.R.color.transparent);
             tabRegister.setTextColor(getColor(R.color.text_secondary_light));
             btnSubmit.setText("Entrar");
+            layoutNameField.setVisibility(View.GONE);
+            tvForgot.setVisibility(View.VISIBLE);
         });
 
         tabRegister.setOnClickListener(v -> {
@@ -43,6 +46,8 @@ public class AuthActivity extends AppCompatActivity {
             tabLogin.setBackgroundResource(android.R.color.transparent);
             tabLogin.setTextColor(getColor(R.color.text_secondary_light));
             btnSubmit.setText("Crear cuenta");
+            layoutNameField.setVisibility(View.VISIBLE);
+            tvForgot.setVisibility(View.GONE);
         });
 
         // ── CTA principal ────────────────────────────────────────────────────
@@ -55,9 +60,6 @@ public class AuthActivity extends AppCompatActivity {
         // ── Social login (maqueta) ───────────────────────────────────────────
         btnGoogle.setOnClickListener(v -> {
             // TODO: Google Sign-In
-        });
-        btnApple.setOnClickListener(v -> {
-            // TODO: Apple Sign-In
         });
 
         tvForgot.setOnClickListener(v -> {
