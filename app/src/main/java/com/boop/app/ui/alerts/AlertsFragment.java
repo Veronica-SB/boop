@@ -13,6 +13,8 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import com.boop.app.R;
 
+import android.content.Intent;
+
 public class AlertsFragment extends Fragment {
 
     @Nullable
@@ -28,12 +30,11 @@ public class AlertsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         // ── Botones nueva alerta ─────────────────────────────────────────
-        view.findViewById(R.id.btn_new_alert).setOnClickListener(v -> {
-            // TODO: Abrir bottom sheet de nueva alerta
-        });
-        view.findViewById(R.id.btn_create_alert).setOnClickListener(v -> {
-            // TODO: Abrir bottom sheet de nueva alerta
-        });
+        View.OnClickListener addListener = v -> {
+            startActivity(new Intent(requireContext(), AddAlertActivity.class));
+        };
+        view.findViewById(R.id.btn_new_alert).setOnClickListener(addListener);
+        view.findViewById(R.id.btn_create_alert).setOnClickListener(addListener);
 
         // ── Check "¿Ya lo has hecho?" ────────────────────────────────────
         setupCheckButton(view,

@@ -13,325 +13,179 @@
         android:orientation="vertical"
         android:paddingBottom="40dp">
 
-        <!-- Header con back -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:paddingStart="24dp"
-            android:paddingEnd="24dp"
-            android:paddingTop="18dp"
-            android:paddingBottom="18dp"
+        <!-- Header -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:gravity="center_vertical"
+            android:paddingStart="24dp" android:paddingEnd="24dp"
+            android:paddingTop="18dp" android:paddingBottom="18dp"
             android:background="@color/surface_light">
-
-            <FrameLayout
-                android:id="@+id/btn_back"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:background="@drawable/bg_circle_green_light"
-                android:clickable="true"
-                android:focusable="true"
-                android:layout_marginEnd="12dp">
-                <ImageView
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_arrow_back"
+            <FrameLayout android:id="@+id/btn_back" android:layout_width="36dp" android:layout_height="36dp"
+                android:background="@drawable/bg_circle_green_light" android:clickable="true"
+                android:focusable="true" android:layout_marginEnd="12dp">
+                <ImageView android:layout_width="18dp" android:layout_height="18dp"
+                    android:layout_gravity="center" android:src="@drawable/ic_arrow_back"
                     app:tint="@color/boop_green" />
             </FrameLayout>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Añade tu primera mascota"
-                android:textSize="17sp"
-                android:fontFamily="@font/poppins_bold"
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:text="Añade tu primera mascota"
+                android:textSize="17sp" android:fontFamily="@font/poppins_bold"
                 android:textColor="@color/text_primary_light" />
         </LinearLayout>
 
-        <!-- Hint -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
             android:text="Siempre podrás editar esto después."
-            android:textSize="13sp"
-            android:fontFamily="@font/poppins_regular"
+            android:textSize="13sp" android:fontFamily="@font/poppins_regular"
             android:textColor="@color/text_secondary_light"
-            android:paddingStart="28dp"
-            android:paddingEnd="28dp"
-            android:paddingBottom="20dp" />
+            android:paddingStart="28dp" android:paddingEnd="28dp" android:paddingBottom="20dp" />
 
-        <!-- Photo upload -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingStart="28dp"
-            android:paddingEnd="28dp"
+        <!-- Photo -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:paddingStart="28dp" android:paddingEnd="28dp"
             android:layout_marginBottom="16dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Foto"
-                android:textSize="13sp"
-                android:fontFamily="@font/poppins_semibold"
-                android:textColor="@color/text_primary_light"
-                android:layout_marginBottom="8dp" />
-
-            <FrameLayout
-                android:id="@+id/btn_photo_upload"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                android:background="@drawable/bg_photo_upload"
-                android:clickable="true"
-                android:focusable="true">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center">
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_camera"
-                        app:tint="@color/text_tertiary_light"
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Foto" android:textSize="13sp" android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/text_primary_light" android:layout_marginBottom="8dp" />
+            <FrameLayout android:id="@+id/btn_photo_upload" android:layout_width="90dp"
+                android:layout_height="90dp" android:background="@drawable/bg_photo_upload"
+                android:clickable="true" android:focusable="true">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                    android:orientation="vertical" android:gravity="center">
+                    <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                        android:src="@drawable/ic_camera" app:tint="@color/text_tertiary_light"
                         android:layout_marginBottom="4dp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Añadir foto"
-                        android:textSize="10sp"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:textColor="@color/text_tertiary_light" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Añadir foto" android:textSize="10sp"
+                        android:fontFamily="@font/poppins_semibold" android:textColor="@color/text_tertiary_light" />
                 </LinearLayout>
             </FrameLayout>
         </LinearLayout>
 
-        <!-- Name field -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingStart="28dp"
-            android:paddingEnd="28dp"
+        <!-- Nombre * -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:paddingStart="28dp" android:paddingEnd="28dp"
             android:layout_marginBottom="16dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nombre"
-                android:textSize="13sp"
-                android:fontFamily="@font/poppins_semibold"
-                android:textColor="@color/text_primary_light"
-                android:layout_marginBottom="8dp" />
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:boxCornerRadiusBottomEnd="12dp"
-                app:boxCornerRadiusBottomStart="12dp"
-                app:boxCornerRadiusTopEnd="12dp"
-                app:boxCornerRadiusTopStart="12dp"
-                app:boxStrokeColor="@color/boop_green"
-                app:boxBackgroundColor="@color/boop_green_light"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_pet_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="56dp"
-                    android:hint="Mochi"
-                    android:fontFamily="@font/poppins_regular"
-                    android:textSize="14sp"
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:gravity="center_vertical"
+                android:layout_marginBottom="8dp">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Nombre" android:textSize="13sp" android:fontFamily="@font/poppins_semibold"
                     android:textColor="@color/text_primary_light" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text=" *" android:textSize="13sp" android:fontFamily="@font/poppins_bold"
+                    android:textColor="@color/alert_red" />
+            </LinearLayout>
+            <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:hintEnabled="false"
+                app:boxCornerRadiusBottomEnd="12dp" app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp" app:boxCornerRadiusTopStart="12dp"
+                app:boxStrokeColor="@color/boop_green" app:boxBackgroundColor="@color/boop_green_light"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/et_pet_name"
+                    android:layout_width="match_parent" android:layout_height="56dp"
+                    android:hint="Mochi" android:fontFamily="@font/poppins_regular"
+                    android:textSize="14sp" android:textColor="@color/text_primary_light" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
-        <!-- Species selector -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingStart="28dp"
-            android:paddingEnd="28dp"
+        <!-- Tipo de animal * -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:paddingStart="28dp" android:paddingEnd="28dp"
             android:layout_marginBottom="16dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tipo de animal"
-                android:textSize="13sp"
-                android:fontFamily="@font/poppins_semibold"
-                android:textColor="@color/text_primary_light"
-                android:layout_marginBottom="12dp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:gravity="center_vertical"
+                android:layout_marginBottom="12dp">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Tipo de animal" android:textSize="13sp"
+                    android:fontFamily="@font/poppins_semibold" android:textColor="@color/text_primary_light" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text=" *" android:textSize="13sp" android:fontFamily="@font/poppins_bold"
+                    android:textColor="@color/alert_red" />
+            </LinearLayout>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
                 android:orientation="horizontal">
-
-                <!-- Gato (selected) -->
-                <LinearLayout
-                    android:id="@+id/btn_species_cat"
-                    android:layout_width="0dp"
-                    android:layout_height="80dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:background="@drawable/bg_species_btn_active"
-                    android:layout_marginEnd="8dp"
-                    android:clickable="true"
-                    android:focusable="true">
-                    <ImageView
-                        android:layout_width="36dp"
-                        android:layout_height="36dp"
-                        android:src="@drawable/ic_cat"
-                        android:scaleType="centerInside"
+                <LinearLayout android:id="@+id/btn_species_cat" android:layout_width="0dp"
+                    android:layout_height="80dp" android:layout_weight="1" android:orientation="vertical"
+                    android:gravity="center" android:background="@drawable/bg_species_btn_active"
+                    android:layout_marginEnd="8dp" android:clickable="true" android:focusable="true">
+                    <ImageView android:layout_width="36dp" android:layout_height="36dp"
+                        android:src="@drawable/ic_cat" android:scaleType="centerInside"
                         app:tint="@color/boop_green" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Gato"
-                        android:textSize="11sp"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:textColor="@color/boop_green_dark"
-                        android:layout_marginTop="4dp" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Gato" android:textSize="11sp" android:fontFamily="@font/poppins_semibold"
+                        android:textColor="@color/boop_green_dark" android:layout_marginTop="4dp" />
                 </LinearLayout>
-
-                <!-- Perro -->
-                <LinearLayout
-                    android:id="@+id/btn_species_dog"
-                    android:layout_width="0dp"
-                    android:layout_height="80dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:background="@drawable/bg_species_btn_inactive"
-                    android:layout_marginEnd="8dp"
-                    android:clickable="true"
-                    android:focusable="true">
-                    <ImageView
-                        android:layout_width="36dp"
-                        android:layout_height="36dp"
-                        android:src="@drawable/ic_dog"
-                        android:scaleType="centerInside"
+                <LinearLayout android:id="@+id/btn_species_dog" android:layout_width="0dp"
+                    android:layout_height="80dp" android:layout_weight="1" android:orientation="vertical"
+                    android:gravity="center" android:background="@drawable/bg_species_btn_inactive"
+                    android:layout_marginEnd="8dp" android:clickable="true" android:focusable="true">
+                    <ImageView android:layout_width="36dp" android:layout_height="36dp"
+                        android:src="@drawable/ic_dog" android:scaleType="centerInside"
                         app:tint="@color/text_secondary_light" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Perro"
-                        android:textSize="11sp"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:textColor="@color/text_secondary_light"
-                        android:layout_marginTop="4dp" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Perro" android:textSize="11sp" android:fontFamily="@font/poppins_semibold"
+                        android:textColor="@color/text_secondary_light" android:layout_marginTop="4dp" />
                 </LinearLayout>
-
-                <!-- Conejo -->
-                <LinearLayout
-                    android:id="@+id/btn_species_rabbit"
-                    android:layout_width="0dp"
-                    android:layout_height="80dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:background="@drawable/bg_species_btn_inactive"
-                    android:layout_marginEnd="8dp"
-                    android:clickable="true"
-                    android:focusable="true">
-                    <ImageView
-                        android:layout_width="36dp"
-                        android:layout_height="36dp"
-                        android:src="@drawable/ic_rabbit"
-                        android:scaleType="centerInside"
+                <LinearLayout android:id="@+id/btn_species_rabbit" android:layout_width="0dp"
+                    android:layout_height="80dp" android:layout_weight="1" android:orientation="vertical"
+                    android:gravity="center" android:background="@drawable/bg_species_btn_inactive"
+                    android:layout_marginEnd="8dp" android:clickable="true" android:focusable="true">
+                    <ImageView android:layout_width="36dp" android:layout_height="36dp"
+                        android:src="@drawable/ic_rabbit" android:scaleType="centerInside"
                         app:tint="@color/text_secondary_light" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Conejo"
-                        android:textSize="11sp"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:textColor="@color/text_secondary_light"
-                        android:layout_marginTop="4dp" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Conejo" android:textSize="11sp" android:fontFamily="@font/poppins_semibold"
+                        android:textColor="@color/text_secondary_light" android:layout_marginTop="4dp" />
                 </LinearLayout>
-
-                <!-- Otro -->
-                <LinearLayout
-                    android:id="@+id/btn_species_bird"
-                    android:layout_width="0dp"
-                    android:layout_height="80dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:background="@drawable/bg_species_btn_inactive"
-                    android:clickable="true"
-                    android:focusable="true">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="···"
-                        android:textSize="20sp"
-                        android:fontFamily="@font/poppins_bold"
-                        android:textColor="@color/text_secondary_light" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Otro"
-                        android:textSize="11sp"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:textColor="@color/text_secondary_light"
-                        android:layout_marginTop="4dp" />
+                <LinearLayout android:id="@+id/btn_species_bird" android:layout_width="0dp"
+                    android:layout_height="80dp" android:layout_weight="1" android:orientation="vertical"
+                    android:gravity="center" android:background="@drawable/bg_species_btn_inactive"
+                    android:clickable="true" android:focusable="true">
+                    <ImageView android:layout_width="36dp" android:layout_height="36dp"
+                        android:src="@drawable/ic_bird" android:scaleType="centerInside"
+                        app:tint="@color/text_secondary_light" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Ave" android:textSize="11sp" android:fontFamily="@font/poppins_semibold"
+                        android:textColor="@color/text_secondary_light" android:layout_marginTop="4dp" />
                 </LinearLayout>
-
             </LinearLayout>
         </LinearLayout>
 
-        <!-- Breed + Sex row -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingStart="28dp"
-            android:paddingEnd="28dp"
+        <!-- Raza + Sexo -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:paddingStart="28dp" android:paddingEnd="28dp"
             android:layout_marginBottom="16dp">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:layout_marginEnd="12dp">
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:orientation="vertical" android:layout_marginEnd="12dp">
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                     android:text="Raza" android:textSize="13sp" android:fontFamily="@font/poppins_semibold"
                     android:textColor="@color/text_primary_light" android:layout_marginBottom="8dp" />
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:hintEnabled="false"
                     app:boxCornerRadiusBottomEnd="12dp" app:boxCornerRadiusBottomStart="12dp"
                     app:boxCornerRadiusTopEnd="12dp" app:boxCornerRadiusTopStart="12dp"
                     app:boxStrokeColor="@color/border_light" app:boxBackgroundColor="@color/background_light"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/et_breed"
+                    <com.google.android.material.textfield.TextInputEditText android:id="@+id/et_breed"
                         android:layout_width="match_parent" android:layout_height="56dp"
                         android:hint="Europea" android:fontFamily="@font/poppins_regular"
                         android:textSize="14sp" android:textColor="@color/text_primary_light" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:orientation="vertical">
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                     android:text="Sexo" android:textSize="13sp" android:fontFamily="@font/poppins_semibold"
                     android:textColor="@color/text_primary_light" android:layout_marginBottom="8dp" />
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:hintEnabled="false"
                     app:boxCornerRadiusBottomEnd="12dp" app:boxCornerRadiusBottomStart="12dp"
                     app:boxCornerRadiusTopEnd="12dp" app:boxCornerRadiusTopStart="12dp"
                     app:boxStrokeColor="@color/border_light" app:boxBackgroundColor="@color/background_light"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/et_sex"
+                    <com.google.android.material.textfield.TextInputEditText android:id="@+id/et_sex"
                         android:layout_width="match_parent" android:layout_height="56dp"
                         android:hint="Hembra" android:fontFamily="@font/poppins_regular"
                         android:textSize="14sp" android:textColor="@color/text_primary_light" />
@@ -339,47 +193,280 @@
             </LinearLayout>
         </LinearLayout>
 
-        <!-- Birth date -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingStart="28dp"
-            android:paddingEnd="28dp"
-            android:layout_marginBottom="28dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="Fecha de nacimiento" android:textSize="13sp"
-                android:fontFamily="@font/poppins_semibold" android:textColor="@color/text_primary_light"
-                android:layout_marginBottom="8dp" />
-            <com.google.android.material.textfield.TextInputLayout
+        <!-- Nacimiento + Peso -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:paddingStart="28dp" android:paddingEnd="28dp"
+            android:layout_marginBottom="16dp">
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:orientation="vertical" android:layout_marginEnd="12dp">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Fecha de nacimiento" android:textSize="13sp"
+                    android:fontFamily="@font/poppins_semibold" android:textColor="@color/text_primary_light"
+                    android:layout_marginBottom="8dp" />
+                <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:hintEnabled="false"
+                    app:boxCornerRadiusBottomEnd="12dp" app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp" app:boxCornerRadiusTopStart="12dp"
+                    app:boxStrokeColor="@color/border_light" app:boxBackgroundColor="@color/background_light"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText android:id="@+id/et_birthdate"
+                        android:layout_width="match_parent" android:layout_height="56dp"
+                        android:hint="DD/MM/AAAA" android:fontFamily="@font/poppins_regular"
+                        android:textSize="14sp" android:inputType="date"
+                        android:textColor="@color/text_primary_light" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:orientation="vertical">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Peso (kg)" android:textSize="13sp" android:fontFamily="@font/poppins_semibold"
+                    android:textColor="@color/text_primary_light" android:layout_marginBottom="8dp" />
+                <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:hintEnabled="false"
+                    app:boxCornerRadiusBottomEnd="12dp" app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp" app:boxCornerRadiusTopStart="12dp"
+                    app:boxStrokeColor="@color/border_light" app:boxBackgroundColor="@color/background_light"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText android:id="@+id/et_weight"
+                        android:layout_width="match_parent" android:layout_height="56dp"
+                        android:hint="4.2" android:fontFamily="@font/poppins_regular"
+                        android:textSize="14sp" android:inputType="numberDecimal"
+                        android:textColor="@color/text_primary_light" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Nº de Chip (* obligatorio para Gato/Perro) -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:paddingStart="28dp" android:paddingEnd="28dp"
+            android:layout_marginBottom="16dp">
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:gravity="center_vertical"
+                android:layout_marginBottom="8dp">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Nº de Chip" android:textSize="13sp"
+                    android:fontFamily="@font/poppins_semibold" android:textColor="@color/text_primary_light" />
+                <!-- * se muestra/oculta desde Java según especie seleccionada -->
+                <TextView android:id="@+id/tv_chip_required_mark"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text=" *" android:textSize="13sp" android:fontFamily="@font/poppins_bold"
+                    android:textColor="@color/alert_red" android:visibility="visible" />
+            </LinearLayout>
+            <com.google.android.material.textfield.TextInputLayout android:id="@+id/til_chip"
                 android:layout_width="match_parent" android:layout_height="wrap_content"
+                app:hintEnabled="false"
                 app:boxCornerRadiusBottomEnd="12dp" app:boxCornerRadiusBottomStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp" app:boxCornerRadiusTopStart="12dp"
                 app:boxStrokeColor="@color/border_light" app:boxBackgroundColor="@color/background_light"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_birthdate"
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/et_chip"
                     android:layout_width="match_parent" android:layout_height="56dp"
-                    android:hint="DD/MM/AAAA" android:fontFamily="@font/poppins_regular"
-                    android:textSize="14sp" android:textColor="@color/text_primary_light"
-                    android:inputType="date" />
+                    android:hint="Nº de microchip" android:fontFamily="@font/poppins_regular"
+                    android:textSize="14sp" android:inputType="number"
+                    android:textColor="@color/text_primary_light" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
-        <!-- Submit button -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_create_pet"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginStart="28dp"
-            android:layout_marginEnd="28dp"
-            android:text="Crear perfil de mascota"
-            android:textSize="15sp"
-            android:fontFamily="@font/poppins_bold"
-            android:textColor="@color/white"
-            app:backgroundTint="@color/boop_green"
-            app:cornerRadius="20dp"
-            app:elevation="6dp" />
+        <!-- Nº de Licencia -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:paddingStart="28dp" android:paddingEnd="28dp"
+            android:layout_marginBottom="16dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Nº de Licencia" android:textSize="13sp"
+                android:fontFamily="@font/poppins_semibold" android:textColor="@color/text_primary_light"
+                android:layout_marginBottom="8dp" />
+            <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:hintEnabled="false"
+                app:boxCornerRadiusBottomEnd="12dp" app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp" app:boxCornerRadiusTopStart="12dp"
+                app:boxStrokeColor="@color/border_light" app:boxBackgroundColor="@color/background_light"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/et_pet_license"
+                    android:layout_width="match_parent" android:layout_height="56dp"
+                    android:hint="Opcional" android:fontFamily="@font/poppins_regular"
+                    android:textSize="14sp" android:textColor="@color/text_primary_light" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <!-- Alergias -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:paddingStart="28dp" android:paddingEnd="28dp"
+            android:layout_marginBottom="16dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Alergias / Intolerancias" android:textSize="13sp"
+                android:fontFamily="@font/poppins_semibold" android:textColor="@color/text_primary_light"
+                android:layout_marginBottom="8dp" />
+            <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:hintEnabled="false"
+                app:boxCornerRadiusBottomEnd="12dp" app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp" app:boxCornerRadiusTopStart="12dp"
+                app:boxStrokeColor="@color/border_light" app:boxBackgroundColor="@color/background_light"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/et_allergies"
+                    android:layout_width="match_parent" android:layout_height="56dp"
+                    android:hint="Ninguna conocida" android:fontFamily="@font/poppins_regular"
+                    android:textSize="14sp" android:textColor="@color/text_primary_light" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <!-- Veterinario habitual: tabs Maps / Manual -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:paddingStart="28dp" android:paddingEnd="28dp"
+            android:layout_marginBottom="16dp">
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Veterinario habitual" android:textSize="13sp"
+                android:fontFamily="@font/poppins_semibold" android:textColor="@color/text_primary_light"
+                android:layout_marginBottom="10dp" />
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="44dp"
+                android:orientation="horizontal" android:background="@drawable/bg_tab_group"
+                android:padding="3dp" android:layout_marginBottom="12dp">
+                <TextView android:id="@+id/tab_vet_maps" android:layout_width="0dp"
+                    android:layout_height="match_parent" android:layout_weight="1"
+                    android:gravity="center" android:text="🗺 Buscar en Maps"
+                    android:textSize="12sp" android:fontFamily="@font/poppins_semibold"
+                    android:textColor="@color/white" android:background="@drawable/bg_tab_selected"
+                    android:clickable="true" android:focusable="true" />
+                <TextView android:id="@+id/tab_vet_manual" android:layout_width="0dp"
+                    android:layout_height="match_parent" android:layout_weight="1"
+                    android:gravity="center" android:text="✏️ Escribir manualmente"
+                    android:textSize="12sp" android:fontFamily="@font/poppins_semibold"
+                    android:textColor="@color/text_secondary_light"
+                    android:background="@android:color/transparent"
+                    android:clickable="true" android:focusable="true" />
+            </LinearLayout>
+
+            <!-- Maps mode -->
+            <LinearLayout android:id="@+id/layout_vet_maps" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:orientation="vertical"
+                android:visibility="visible">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="48dp"
+                    android:orientation="horizontal" android:background="@drawable/bg_search_bar"
+                    android:gravity="center_vertical" android:paddingStart="14dp" android:paddingEnd="14dp">
+                    <ImageView android:layout_width="16dp" android:layout_height="16dp"
+                        android:src="@drawable/ic_search" app:tint="@color/text_tertiary_light"
+                        android:layout_marginEnd="10dp" />
+                    <EditText android:id="@+id/et_vet_search" android:layout_width="0dp"
+                        android:layout_height="match_parent" android:layout_weight="1"
+                        android:hint="Buscar clínica..." android:background="@android:color/transparent"
+                        android:fontFamily="@font/poppins_regular" android:textSize="14sp"
+                        android:textColor="@color/text_primary_light" android:inputType="text"
+                        android:imeOptions="actionSearch" />
+                </LinearLayout>
+                <!-- Selected vet (visible after selection) -->
+                <LinearLayout android:id="@+id/layout_vet_selected" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:orientation="horizontal"
+                    android:gravity="center_vertical" android:background="@drawable/bg_species_btn_active"
+                    android:padding="12dp" android:layout_marginTop="8dp" android:visibility="gone">
+                    <TextView android:id="@+id/tv_vet_selected_name" android:layout_width="0dp"
+                        android:layout_height="wrap_content" android:layout_weight="1"
+                        android:textSize="13sp" android:fontFamily="@font/poppins_semibold"
+                        android:textColor="@color/boop_green_dark" />
+                    <ImageView android:id="@+id/btn_vet_clear" android:layout_width="20dp"
+                        android:layout_height="20dp" android:src="@drawable/ic_close"
+                        app:tint="@color/boop_green_dark" android:clickable="true" android:focusable="true" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Manual mode -->
+            <com.google.android.material.textfield.TextInputLayout android:id="@+id/layout_vet_manual"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:hintEnabled="false"
+                app:boxCornerRadiusBottomEnd="12dp" app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp" app:boxCornerRadiusTopStart="12dp"
+                app:boxStrokeColor="@color/border_light" app:boxBackgroundColor="@color/background_light"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/et_vet_manual"
+                    android:layout_width="match_parent" android:layout_height="56dp"
+                    android:hint="Nombre de la clínica" android:fontFamily="@font/poppins_regular"
+                    android:textSize="14sp" android:textColor="@color/text_primary_light" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <!-- Alta de Vacunas -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:paddingStart="28dp" android:paddingEnd="28dp"
+            android:layout_marginBottom="24dp">
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Alta de vacunas" android:textSize="13sp"
+                android:fontFamily="@font/poppins_semibold" android:textColor="@color/text_primary_light"
+                android:layout_marginBottom="4dp" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Introduce las vacunas que ya tiene administradas."
+                android:textSize="12sp" android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/text_secondary_light"
+                android:layout_marginBottom="10dp" />
+
+            <!-- Vaccine rows container (filas añadidas dinámicamente desde Java) -->
+            <LinearLayout android:id="@+id/vac_list_container" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:orientation="vertical">
+
+                <!-- Fila 0 (inicial) -->
+                <LinearLayout android:id="@+id/vac_row_0" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:orientation="vertical"
+                    android:background="@drawable/bg_species_btn_inactive"
+                    android:padding="14dp" android:layout_marginBottom="8dp">
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        app:hintEnabled="false"
+                        app:boxCornerRadiusBottomEnd="10dp" app:boxCornerRadiusBottomStart="10dp"
+                        app:boxCornerRadiusTopEnd="10dp" app:boxCornerRadiusTopStart="10dp"
+                        app:boxStrokeColor="@color/border_light" app:boxBackgroundColor="@color/surface_light"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                        <com.google.android.material.textfield.TextInputEditText android:id="@+id/et_vac_name_0"
+                            android:layout_width="match_parent" android:layout_height="56dp"
+                            android:hint="Nombre de la vacuna" android:fontFamily="@font/poppins_regular"
+                            android:textSize="13sp" android:textColor="@color/text_primary_light" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="horizontal" android:gravity="center_vertical">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Fecha:" android:textSize="12sp"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:textColor="@color/text_secondary_light" android:layout_marginEnd="10dp" />
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp" android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            app:hintEnabled="false"
+                            app:boxCornerRadiusBottomEnd="10dp" app:boxCornerRadiusBottomStart="10dp"
+                            app:boxCornerRadiusTopEnd="10dp" app:boxCornerRadiusTopStart="10dp"
+                            app:boxStrokeColor="@color/border_light" app:boxBackgroundColor="@color/surface_light"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                            <com.google.android.material.textfield.TextInputEditText android:id="@+id/et_vac_date_0"
+                                android:layout_width="match_parent" android:layout_height="56dp"
+                                android:hint="DD/MM/AAAA" android:fontFamily="@font/poppins_regular"
+                                android:textSize="13sp" android:inputType="date"
+                                android:textColor="@color/text_primary_light" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton android:id="@+id/btn_add_vaccine"
+                android:layout_width="match_parent" android:layout_height="48dp"
+                android:text="+ Añadir otra vacuna" android:textSize="13sp"
+                android:fontFamily="@font/poppins_semibold" android:textColor="@color/boop_green"
+                app:backgroundTint="@android:color/transparent"
+                app:strokeColor="@color/boop_green_mid" app:strokeWidth="1.5dp"
+                app:cornerRadius="14dp" />
+        </LinearLayout>
+
+        <!-- Submit -->
+        <com.google.android.material.button.MaterialButton android:id="@+id/btn_create_pet"
+            android:layout_width="match_parent" android:layout_height="56dp"
+            android:layout_marginStart="28dp" android:layout_marginEnd="28dp"
+            android:text="Crear perfil de mascota" android:textSize="15sp"
+            android:fontFamily="@font/poppins_bold" android:textColor="@color/white"
+            app:backgroundTint="@color/boop_green" app:cornerRadius="20dp" app:elevation="6dp" />
 
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

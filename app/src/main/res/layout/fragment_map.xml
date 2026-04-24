@@ -5,12 +5,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Google Map -->
+    <!-- Placeholder for Google Map -->
+    <View
+        android:id="@+id/map_placeholder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_light" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Mapa (Pendiente de configuración)"
+        android:textColor="@color/text_tertiary_light"
+        android:fontFamily="@font/poppins_semibold" />
+
+    <!-- Google Map (Comentado hasta configurar dependencias)
     <fragment
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+    -->
 
     <!-- Search bar overlay -->
     <LinearLayout
@@ -69,65 +85,45 @@
             </FrameLayout>
         </LinearLayout>
 
-        <!-- Filter chips -->
+        <!-- Filter chips — ChipGroup oficial -->
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scrollbars="none"
             android:layout_marginTop="10dp">
-            <LinearLayout
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chip_group_filters"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                app:singleSelection="true"
+                app:selectionRequired="true">
 
-                <TextView
-                    android:id="@+id/chip_vet"
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_vets"
+                    style="@style/Widget.MaterialComponents.Chip.Filter"
                     android:layout_width="wrap_content"
-                    android:layout_height="36dp"
-                    android:gravity="center"
-                    android:text="🏥 Veterinario"
-                    android:textSize="12sp"
-                    android:fontFamily="@font/poppins_semibold"
-                    android:textColor="@color/white"
-                    android:background="@drawable/bg_chip_active"
-                    android:paddingStart="14dp"
-                    android:paddingEnd="14dp"
-                    android:layout_marginEnd="8dp"
-                    android:clickable="true"
-                    android:focusable="true" />
+                    android:layout_height="wrap_content"
+                    android:text="🏥 Veterinarios"
+                    android:checked="true"
+                    android:fontFamily="@font/poppins_semibold" />
 
-                <TextView
-                    android:id="@+id/chip_groomer"
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_grooming"
+                    style="@style/Widget.MaterialComponents.Chip.Filter"
                     android:layout_width="wrap_content"
-                    android:layout_height="36dp"
-                    android:gravity="center"
-                    android:text="✂️ Peluquería"
-                    android:textSize="12sp"
-                    android:fontFamily="@font/poppins_semibold"
-                    android:textColor="@color/text_secondary_light"
-                    android:background="@drawable/bg_chip_inactive"
-                    android:paddingStart="14dp"
-                    android:paddingEnd="14dp"
-                    android:layout_marginEnd="8dp"
-                    android:clickable="true"
-                    android:focusable="true" />
+                    android:layout_height="wrap_content"
+                    android:text="✂️ Peluquerías"
+                    android:fontFamily="@font/poppins_semibold" />
 
-                <TextView
-                    android:id="@+id/chip_park"
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_parks"
+                    style="@style/Widget.MaterialComponents.Chip.Filter"
                     android:layout_width="wrap_content"
-                    android:layout_height="36dp"
-                    android:gravity="center"
-                    android:text="🌿 Parque"
-                    android:textSize="12sp"
-                    android:fontFamily="@font/poppins_semibold"
-                    android:textColor="@color/text_secondary_light"
-                    android:background="@drawable/bg_chip_inactive"
-                    android:paddingStart="14dp"
-                    android:paddingEnd="14dp"
-                    android:clickable="true"
-                    android:focusable="true" />
+                    android:layout_height="wrap_content"
+                    android:text="🌿 Parques"
+                    android:fontFamily="@font/poppins_semibold" />
 
-            </LinearLayout>
+            </com.google.android.material.chip.ChipGroup>
         </HorizontalScrollView>
 
     </LinearLayout>

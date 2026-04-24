@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Mapeo de colores para Modo Oscuro -->
+    <color name="background_light">@color/background_dark</color>
+    <color name="surface_light">@color/surface_dark</color>
+    <color name="text_primary_light">@color/text_primary_dark</color>
+    <color name="text_secondary_light">@color/text_secondary_dark</color>
+    <color name="text_tertiary_light">@color/text_tertiary_dark</color>
+    <color name="border_light">@color/border_dark</color>
+
+    <color name="boop_green_light">@color/green_light_dark</color>
+    <color name="boop_green_mid">@color/green_mid_dark</color>
+
+    <color name="white">@color/surface_dark</color>
+</resources>

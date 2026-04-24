@@ -72,8 +72,22 @@ public class HomeActivity extends AppCompatActivity {
 
         // FAB center button
         findViewById(R.id.nav_fab).setOnClickListener(v -> {
-            // TODO: Abrir pantalla de nueva alerta / nuevo post
+            showActionDialog();
         });
+    }
+
+    private void showActionDialog() {
+        String[] options = {"Nuevo Recordatorio", "Nueva Publicación Comunidad"};
+        new androidx.appcompat.app.AlertDialog.Builder(this)
+                .setTitle("¿Qué quieres hacer?")
+                .setItems(options, (dialog, which) -> {
+                    if (which == 0) {
+                        startActivity(new android.content.Intent(this, com.boop.app.ui.alerts.AddAlertActivity.class));
+                    } else {
+                        startActivity(new android.content.Intent(this, com.boop.app.ui.community.CreatePostActivity.class));
+                    }
+                })
+                .show();
     }
 
     /**

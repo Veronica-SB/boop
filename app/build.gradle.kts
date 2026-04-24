@@ -1,8 +1,7 @@
 plugins {
     id("com.android.application")
-    id("com.google.gms.google-services")
-    // 1. AÑADIMOS EL PLUGIN DE SECRETOS AQUÍ
-    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
+    // id("com.google.gms.google-services")
+    // id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
 android {
@@ -35,7 +34,6 @@ android {
 
     buildFeatures {
         viewBinding = false
-        // vigila que las CLAVES SE GENERAN CORRECTAMENTE
         buildConfig = true
     }
 }
@@ -60,16 +58,16 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel:2.7.0")
     implementation("androidx.lifecycle:lifecycle-livedata:2.7.0")
 
-    // Firebase
-    implementation(platform("com.google.firebase:firebase-bom:32.7.0"))
-    implementation("com.google.firebase:firebase-auth")
-    implementation("com.google.firebase:firebase-firestore")
-    implementation("com.google.firebase:firebase-messaging")
-    implementation("com.google.firebase:firebase-storage")
+    // Firebase (comentado hasta tener google-services.json)
+    // implementation(platform("com.google.firebase:firebase-bom:32.7.0"))
+    // implementation("com.google.firebase:firebase-auth")
+    // implementation("com.google.firebase:firebase-firestore")
+    // implementation("com.google.firebase:firebase-messaging")
+    // implementation("com.google.firebase:firebase-storage")
 
-    // Google Maps
-    implementation("com.google.android.gms:play-services-maps:18.2.0")
-    implementation("com.google.android.gms:play-services-location:21.1.0")
+    // Google Maps (comentado hasta tener API key)
+    // implementation("com.google.android.gms:play-services-maps:18.2.0")
+    // implementation("com.google.android.gms:play-services-location:21.1.0")
 
     // Glide (imágenes)
     implementation("com.github.bumptech.glide:glide:4.16.0")
