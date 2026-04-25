@@ -2,6 +2,7 @@ package com.boop.app.ui.community;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.navigation.Navigation;
 import com.boop.app.R;
 import com.boop.app.data.model.CommunityPost;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.ListenerRegistration;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.DocumentSnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +26,9 @@ public class CommunityFragment extends Fragment {
 
     private CommunityAdapter adapter;
     private final List<CommunityPost> allPosts = new ArrayList<>();
+    private FirebaseFirestore db;
+    private ListenerRegistration listenerRegistration;
+    private String currentFilter = "all";
 
     @Nullable
     @Override
@@ -34,91 +42,77 @@ public class CommunityFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Botón atrás (vuelve al Home)
-        view.findViewById(R.id.btn_back_community).setOnClickListener(v -> {
-            Navigation.findNavController(v).navigate(R.id.homeFragment);
-        });
+        db = FirebaseFirestore.getInstance();
 
-        // Botón nueva publicación
-        view.findViewById(R.id.btn_new_post).setOnClickListener(v -> {
-            startActivity(new Intent(requireContext(), CreatePostActivity.class));
-        });
+        view.findViewById(R.id.btn_back_community).setOnClickListener(v ->
+                Navigation.findNavController(v).navigate(R.id.homeFragment));
 
-        // Setup RecyclerView
+        view.findViewById(R.id.btn_new_post).setOnClickListener(v ->
+                startActivity(new Intent(requireContext(), CreatePostActivity.class)));
+
         RecyclerView rvFeed = view.findViewById(R.id.rv_community_feed);
         rvFeed.setLayoutManager(new LinearLayoutManager(requireContext()));
-        
-        loadMockData();
         adapter = new CommunityAdapter(allPosts);
         rvFeed.setAdapter(adapter);
 
-        // Tab switching — maqueta funcional
-        TextView tabAll = view.findViewById(R.id.tab_all);
+        TextView tabAll       = view.findViewById(R.id.tab_all);
         TextView tabQuestions = view.findViewById(R.id.tab_questions);
-        TextView tabAdoption = view.findViewById(R.id.tab_adoption);
-        TextView tabExchange = view.findViewById(R.id.tab_exchange);
+        TextView tabAdoption  = view.findViewById(R.id.tab_adoption);
+        TextView tabExchange  = view.findViewById(R.id.tab_exchange);
 
         View.OnClickListener tabListener = v -> {
-            // Reset all
             for (TextView tab : new TextView[]{tabAll, tabQuestions, tabAdoption, tabExchange}) {
                 tab.setBackgroundResource(R.drawable.bg_tab_inactive);
                 tab.setTextColor(requireContext().getColor(R.color.text_secondary_light));
             }
-            // Set active
-            TextView active = (TextView) v;
-            active.setBackgroundResource(R.drawable.bg_tab_active);
-            active.setTextColor(requireContext().getColor(R.color.boop_green));
+            ((TextView) v).setBackgroundResource(R.drawable.bg_tab_active);
+            ((TextView) v).setTextColor(requireContext().getColor(R.color.boop_green));
 
-            // Filtrar (Simulación)
-            filterPosts(v.getId());
+            int id = v.getId();
+            if      (id == R.id.tab_questions) currentFilter = "question";
+            else if (id == R.id.tab_adoption)  currentFilter = "adoption";
+            else if (id == R.id.tab_exchange)  currentFilter = "exchange";
+            else                               currentFilter = "all";
+
+            listenToPosts();
         };
 
         tabAll.setOnClickListener(tabListener);
         tabQuestions.setOnClickListener(tabListener);
         tabAdoption.setOnClickListener(tabListener);
         tabExchange.setOnClickListener(tabListener);
+
+        listenToPosts();
     }
 
-    private void loadMockData() {
-        if (!allPosts.isEmpty()) return; // Evitar duplicados al volver al fragment
+    private void listenToPosts() {
+        if (listenerRegistration != null) listenerRegistration.remove();
 
-        allPosts.add(new CommunityPost("1", "u1", "Ana M.", "cat", "question", 
-            "Mi gata lleva 2 días sin comer bien. ¿Habéis probado NutriPlus?", System.currentTimeMillis()));
-        allPosts.get(0).setLikes(14);
-        allPosts.get(0).setComments(8);
+        Query query = db.collection("community_posts")
+                .orderBy("timestamp", Query.Direction.DESCENDING);
 
-        allPosts.add(new CommunityPost("2", "u2", "Carlos V.", "dog", "exchange", 
-            "Arnés Ruffwear talla M en perfecto estado. Lo dono a quien lo necesite.", System.currentTimeMillis()));
-        allPosts.get(1).setLikes(22);
-        allPosts.get(1).setComments(3);
+        if (!"all".equals(currentFilter))
+            query = query.whereEqualTo("type", currentFilter);
 
-        allPosts.add(new CommunityPost("3", "u3", "Protectora SOS", "dog", "adoption", 
-            "Max busca un hogar responsable. Es muy cariñoso y juguetón.", System.currentTimeMillis()));
-        allPosts.get(2).setLocation("L'Hospitalet");
-        allPosts.get(2).setLikes(45);
-        allPosts.get(2).setComments(12);
-    }
+        listenerRegistration = query.addSnapshotListener((snapshots, error) -> {
+            if (error != null) { Log.e("CommunityFragment", "Error", error); return; }
+            if (snapshots == null) return;
 
-    private void filterPosts(int tabId) {
-        List<CommunityPost> filtered = new ArrayList<>();
-        String targetType = "";
-        if (tabId == R.id.tab_questions) targetType = "question";
-        else if (tabId == R.id.tab_adoption) targetType = "adoption";
-        else if (tabId == R.id.tab_exchange) targetType = "exchange";
-
-        if (targetType.isEmpty()) {
-            filtered.addAll(allPosts);
-        } else {
-            for (CommunityPost p : allPosts) {
-                if (targetType.equals(p.getType())) filtered.add(p);
+            allPosts.clear();
+            for (DocumentSnapshot doc : snapshots.getDocuments()) {
+                CommunityPost post = doc.toObject(CommunityPost.class);
+                if (post != null) {
+                    post.setId(doc.getId());
+                    allPosts.add(post);
+                }
             }
-        }
-        
-        adapter = new CommunityAdapter(filtered);
-        View root = getView();
-        if (root != null) {
-            RecyclerView rvFeed = root.findViewById(R.id.rv_community_feed);
-            rvFeed.setAdapter(adapter);
-        }
+            adapter.notifyDataSetChanged();
+        });
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (listenerRegistration != null) listenerRegistration.remove();
     }
 }
