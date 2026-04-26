@@ -6,12 +6,12 @@ import java.util.Date;
 /**
  * BOOP — Modelo de datos: Registro médico
  *
- * Representa un documento en la subcolección "mascotas/{petId}/historialMedico/{registroId}".
+ * Representa un documento en la subcolección "pets/{petId}/medicalHistory/{recordId}".
  *
- * Tanto el OWNER como los futuros roles con permiso pueden añadir registros.
+ * Tanto el OWNER como los EDITOR (si se permite en reglas) pueden añadir registros.
  * El campo createdBy indica quién añadió cada entrada.
  *
- * Subcolección Firestore: mascotas/{petId}/historialMedico/{registroId}
+ * Subcolección Firestore: pets/{petId}/medicalHistory/{recordId}
  */
 public class MedicalRecord {
 

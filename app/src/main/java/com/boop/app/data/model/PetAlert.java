@@ -6,13 +6,13 @@ import java.util.Date;
 /**
  * BOOP — Modelo de datos: Recordatorio
  *
- * Representa un documento en la subcolección "mascotas/{petId}/recordatorios/{alertaId}".
+ * Representa un documento en la subcolección "pets/{petId}/reminders/{alertId}".
  *
  * Roles y permisos:
  * - OWNER: puede crear, editar y eliminar recordatorios
  * - EDITOR: solo puede actualizar confirmedBy y confirmedAt (marcar como hecho)
  *
- * Subcolección Firestore: mascotas/{petId}/recordatorios/{alertaId}
+ * Subcolección Firestore: pets/{petId}/reminders/{alertId}
  */
 public class PetAlert {
 

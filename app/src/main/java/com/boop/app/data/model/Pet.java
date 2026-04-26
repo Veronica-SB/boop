@@ -6,13 +6,13 @@ import java.util.Date;
 /**
  * BOOP — Modelo de datos: Mascota
  *
- * Representa un documento en la colección raíz "mascotas/{petId}".
+ * Representa un documento en la colección raíz "pets/{petId}".
  *
  * IMPORTANTE: Este modelo solo contiene los campos básicos del documento.
  * Los cuidadores, historial médico, vacunas y recordatorios son subcolecciones
  * independientes y se cargan por separado cuando se necesitan.
  *
- * Colección Firestore: mascotas/{petId}
+ * Colección Firestore: pets/{petId}
  */
 public class Pet {
 
