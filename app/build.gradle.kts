@@ -1,6 +1,6 @@
 plugins {
     id("com.android.application")
-    // id("com.google.gms.google-services")
+    id("com.google.gms.google-services")
     // id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
@@ -59,11 +59,11 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata:2.7.0")
 
     // Firebase (comentado hasta tener google-services.json)
-    // implementation(platform("com.google.firebase:firebase-bom:32.7.0"))
-    // implementation("com.google.firebase:firebase-auth")
-    // implementation("com.google.firebase:firebase-firestore")
-    // implementation("com.google.firebase:firebase-messaging")
-    // implementation("com.google.firebase:firebase-storage")
+    implementation(platform("com.google.firebase:firebase-bom:32.7.0"))
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-firestore")
+    implementation("com.google.firebase:firebase-messaging")
+    implementation("com.google.firebase:firebase-storage")
 
     // Google Maps (comentado hasta tener API key)
     // implementation("com.google.android.gms:play-services-maps:18.2.0")
