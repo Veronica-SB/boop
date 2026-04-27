@@ -11,6 +11,7 @@ import com.boop.app.ui.auth.AuthActivity;
 import com.boop.app.ui.medical.AddMedicalVisitActivity;
 import com.boop.app.ui.addpet.AddPetActivity;
 import com.boop.app.utils.ThemeManager;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -80,6 +81,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         // --- Cerrar Sesión ---
         findViewById(R.id.btn_logout).setOnClickListener(v -> {
+            FirebaseAuth.getInstance().signOut();
             Intent intent = new Intent(this, AuthActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
