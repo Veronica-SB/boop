@@ -1,14 +1,19 @@
 package com.boop.app.ui.onboarding;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import com.boop.app.utils.ThemeManager;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 import com.boop.app.R;
 import com.boop.app.ui.auth.AuthActivity;
+import com.boop.app.utils.ThemeManager;
 
 public class OnboardingActivity extends AppCompatActivity {
+
+    // Mismo archivo y clave que usa MainActivity
+    private static final String PREFS_NAME = "boop_prefs";
+    private static final String KEY_ONBOARDING_DONE = "onboarding_done";
 
     private ViewPager2 viewPager;
     private OnboardingAdapter adapter;
@@ -23,7 +28,7 @@ public class OnboardingActivity extends AppCompatActivity {
         adapter = new OnboardingAdapter(this);
         viewPager.setAdapter(adapter);
 
-        // Disable swipe — navegación sólo con botones
+        // Navegación solo con botones, sin swipe
         viewPager.setUserInputEnabled(false);
     }
 
@@ -44,6 +49,13 @@ public class OnboardingActivity extends AppCompatActivity {
     }
 
     private void goToAuth() {
+        // Guardamos que el onboarding ya se vio para que el splash
+        // no lo vuelva a mostrar en próximas aperturas de la app
+        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        prefs.edit()
+                .putBoolean(KEY_ONBOARDING_DONE, true)
+                .apply();
+
         startActivity(new Intent(this, AuthActivity.class));
         finish();
     }
