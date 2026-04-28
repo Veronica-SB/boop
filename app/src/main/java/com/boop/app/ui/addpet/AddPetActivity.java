@@ -16,15 +16,30 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import com.boop.app.HomeActivity;
 import com.boop.app.R;
+import com.boop.app.data.model.Pet;
 import com.boop.app.utils.ThemeManager;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 public class AddPetActivity extends AppCompatActivity {
 
     // 0=Gato, 1=Perro, 2=Conejo, 3=Ave
     private int selectedSpecies = 0;
     private Uri selectedImageUri;
+
+    private boolean vetManualMode = false;
+
+    private FirebaseFirestore db;
+    private FirebaseStorage storage;
+    private String currentUserId;
 
     // Launcher para seleccionar imagen de la galería
     private final ActivityResultLauncher<Intent> galleryLauncher = registerForActivityResult(
@@ -43,6 +58,11 @@ public class AddPetActivity extends AppCompatActivity {
         ThemeManager.applyTheme(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_pet);
+
+        db = FirebaseFirestore.getInstance();
+        storage = FirebaseStorage.getInstance();
+        currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
 
         // ── Species buttons ──────────────────────────────────────────────────
         LinearLayout btnCat    = findViewById(R.id.btn_species_cat);
@@ -91,7 +111,103 @@ public class AddPetActivity extends AppCompatActivity {
 
         updateChipFieldRequirement();
     }
+    private void savePet() {
+        // ── Leer campos del formulario ────────────────────────────────
+        String name        = getValue(R.id.et_pet_name);
+        String breed       = getValue(R.id.et_breed);
+        String sexInput    = getValue(R.id.et_sex);
+        String birthInput  = getValue(R.id.et_birthdate);
+        String weightInput = getValue(R.id.et_weight);
+        String chip        = getValue(R.id.et_chip);
+        String license     = getValue(R.id.et_pet_license);
+        String allergies   = getValue(R.id.et_allergies);
+        String vetClinic   = vetManualMode
+                ? getValue(R.id.et_vet_manual)
+                : getValue(R.id.et_vet_search);
 
+        // ── Construir objeto Pet ──────────────────────────────────────
+        Pet pet = new Pet();
+        pet.setOwnerId(currentUserId);
+        pet.setName(name);
+        pet.setSpecies(getSpeciesEnum());
+        pet.setBreed(breed);
+        pet.setSex(getSexEnum(sexInput));
+        pet.setWeightKg(weightInput.isEmpty() ? null : Float.parseFloat(weightInput));
+        pet.setChipNumber(chip);
+        pet.setLicenseNumber(license);
+        pet.setAllergies(allergies);
+        pet.setVetClinic(vetClinic);
+
+        if (!birthInput.isEmpty()) {
+            try {
+                pet.setBirthDate(new SimpleDateFormat("dd/MM/yyyy",
+                        Locale.getDefault()).parse(birthInput));
+            } catch (ParseException e) {
+                pet.setBirthDate(null);
+            }
+        }
+
+        // ── Guardar en Firestore (con o sin foto) ─────────────────────
+        if (selectedImageUri != null) {
+            uploadPhotoAndSave(pet);
+        } else {
+            saveToFirestore(pet);
+        }
+    }
+
+    private void uploadPhotoAndSave(Pet pet) {
+        StorageReference photoRef = storage.getReference()
+                .child("pets/" + currentUserId + "/" + System.currentTimeMillis() + ".jpg");
+
+        photoRef.putFile(selectedImageUri)
+                .addOnSuccessListener(taskSnapshot ->
+                        photoRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                            pet.setPhotoUrl(uri.toString());
+                            saveToFirestore(pet);
+                        })
+                )
+                .addOnFailureListener(e -> {
+                    Toast.makeText(this, "Error al subir la foto", Toast.LENGTH_SHORT).show();
+                    saveToFirestore(pet); // guardamos igualmente sin foto
+                });
+    }
+
+    private void saveToFirestore(Pet pet) {
+        db.collection("pets")
+                .add(pet)
+                .addOnSuccessListener(ref -> {
+                    ref.update("id", ref.getId());
+                    Toast.makeText(this, pet.getName() + " añadido/a 🐾", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(this, HomeActivity.class));
+                    finish();
+                })
+                .addOnFailureListener(e ->
+                        Toast.makeText(this, "Error al guardar. Inténtalo de nuevo.",
+                                Toast.LENGTH_SHORT).show());
+    }
+
+    // ── Helpers ───────────────────────────────────────────────────────
+
+    private String getValue(int viewId) {
+        EditText et = findViewById(viewId);
+        return et != null ? et.getText().toString().trim() : "";
+    }
+
+    private String getSpeciesEnum() {
+        switch (selectedSpecies) {
+            case 1:  return Pet.PetSpecies.DOG.name();
+            case 2:  return Pet.PetSpecies.RABBIT.name();
+            case 3:  return Pet.PetSpecies.BIRD.name();
+            default: return Pet.PetSpecies.CAT.name();
+        }
+    }
+
+    private String getSexEnum(String input) {
+        String lower = input.toLowerCase(Locale.getDefault());
+        if (lower.contains("macho") || lower.contains("male"))   return Pet.PetSex.MALE.name();
+        if (lower.contains("hembra") || lower.contains("female")) return Pet.PetSex.FEMALE.name();
+        return Pet.PetSex.UNKNOWN.name();
+    }
     private void setupVetTabs() {
         TextView tabMaps   = findViewById(R.id.tab_vet_maps);
         TextView tabManual = findViewById(R.id.tab_vet_manual);
