@@ -7,6 +7,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.boop.app.R;
 import com.boop.app.data.model.CommunityPost;
+import com.boop.app.data.model.Pet;
 import com.boop.app.utils.ThemeManager;
 import com.google.android.material.chip.ChipGroup;
 import com.google.firebase.auth.FirebaseAuth;
@@ -50,16 +51,40 @@ public class CreatePostActivity extends AppCompatActivity {
             return;
         }
 
+        // ── Construir post con todos los campos ───────────────────
         CommunityPost post = new CommunityPost();
         post.setUserId(currentUser.getUid());
-        post.setUserName(currentUser.getDisplayName() != null ? currentUser.getDisplayName() : "Usuario");
-        post.setUserIconType("dog"); // TODO: leer del perfil cuando esté disponible
+        post.setUserName(currentUser.getDisplayName() != null
+                ? currentUser.getDisplayName() : "Usuario");
         post.setType(type);
         post.setContent(content);
         post.setTimestamp(System.currentTimeMillis());
         post.setLikes(0);
         post.setComments(0);
 
+        // ── Leer especie de la primera mascota para el icono ──────
+        db.collection("pets")
+                .whereEqualTo("ownerId", currentUser.getUid())
+                .limit(1)
+                .get()
+                .addOnSuccessListener(pets -> {
+                    String iconType = "dog";
+                    if (!pets.isEmpty()) {
+                        String species = pets.getDocuments().get(0).getString("species");
+                        if (Pet.PetSpecies.CAT.name().equals(species))        iconType = "cat";
+                        else if (Pet.PetSpecies.RABBIT.name().equals(species)) iconType = "rabbit";
+                        else if (Pet.PetSpecies.BIRD.name().equals(species))   iconType = "bird";
+                    }
+                    post.setUserIconType(iconType);
+                    savePost(post);
+                })
+                .addOnFailureListener(e -> {
+                    post.setUserIconType("dog");
+                    savePost(post);
+                });
+    }
+
+    private void savePost(CommunityPost post) {
         db.collection("community_posts")
                 .add(post)
                 .addOnSuccessListener(ref -> {
@@ -67,7 +92,8 @@ public class CreatePostActivity extends AppCompatActivity {
                     finish();
                 })
                 .addOnFailureListener(e ->
-                        Toast.makeText(this, "Error al publicar. Inténtalo de nuevo.", Toast.LENGTH_SHORT).show());
+                        Toast.makeText(this, "Error al publicar. Inténtalo de nuevo.",
+                                Toast.LENGTH_SHORT).show());
     }
 
     private String getSelectedType() {

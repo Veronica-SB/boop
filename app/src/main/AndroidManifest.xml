@@ -6,6 +6,10 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
+    <queries>
+        <package android:name="com.google.android.gms" />
+    </queries>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -45,6 +49,10 @@
         <activity
             android:name=".ui.addpet.AddPetActivity"
             android:exported="false" />
+
+        <!-- PERFIL MASCOTA -->
+        <activity android:name=".ui.pet.PetProfileActivity" />
+        <activity android:name=".ui.pet.PetListActivity" />
 
         <!-- HOME PRINCIPAL -->
         <activity

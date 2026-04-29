@@ -42,17 +42,18 @@ public class CommunityAdapter extends RecyclerView.Adapter<CommunityAdapter.Post
 
         if ("question".equals(post.getType())) {
             holder.tvType.setText("❓ Pregunta");
-            holder.tvType.setTextColor(0xFFE65100);
+            holder.tvType.setTextColor(holder.itemView.getContext().getColor(R.color.alert_red));
             holder.tvType.setBackgroundResource(R.drawable.bg_pill_orange_light);
         } else if ("adoption".equals(post.getType())) {
             holder.tvType.setText("🐾 Adopción");
-            holder.tvType.setTextColor(0xFF2E7D32);
+            holder.tvType.setTextColor(holder.itemView.getContext().getColor(R.color.boop_green_dark));
             holder.tvType.setBackgroundResource(R.drawable.bg_pill_green_light);
         } else if ("exchange".equals(post.getType())) {
             holder.tvType.setText("🔄 Intercambio");
-            holder.tvType.setTextColor(0xFF6A1B9A);
-            holder.tvType.setBackgroundResource(R.drawable.bg_pill_purple_light);
+            holder.tvType.setTextColor(holder.itemView.getContext().getColor(R.color.text_secondary_light));
+            holder.tvType.setBackgroundResource(R.drawable.bg_pill_green_light);
         }
+
 
         if ("dog".equals(post.getUserIconType())) holder.ivUserIcon.setImageResource(R.drawable.ic_dog);
         else holder.ivUserIcon.setImageResource(R.drawable.ic_cat);

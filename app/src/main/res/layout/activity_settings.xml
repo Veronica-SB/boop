@@ -144,42 +144,14 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <LinearLayout
-                    android:id="@+id/row_pet_mochi"
-                    android:layout_width="match_parent" android:layout_height="wrap_content"
-                    android:padding="16dp" android:gravity="center_vertical"
-                    android:clickable="true" android:focusable="true" android:background="?attr/selectableItemBackground">
-                    <ImageView android:layout_width="36dp" android:layout_height="36dp"
-                        android:src="@drawable/ic_cat" android:background="@drawable/bg_circle_green_light"
-                        android:padding="8dp" />
-                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
-                        android:layout_weight="1" android:layout_marginStart="12dp" android:orientation="vertical">
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                            android:text="Mochi" android:fontFamily="@font/poppins_bold" />
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                            android:text="Gata europea · 3 años" android:textSize="11sp" android:textColor="@color/text_secondary_light" />
-                    </LinearLayout>
-                    <ImageView android:id="@+id/btn_delete_mochi" android:layout_width="20dp" android:layout_height="20dp"
-                        android:src="@drawable/ic_trash" app:tint="@color/alert_red" android:clickable="true" android:focusable="true" />
-                </LinearLayout>
-                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/border_light" android:layout_marginHorizontal="16dp" />
-                <LinearLayout
-                    android:id="@+id/row_pet_max"
-                    android:layout_width="match_parent" android:layout_height="wrap_content"
-                    android:padding="16dp" android:gravity="center_vertical"
-                    android:clickable="true" android:focusable="true" android:background="?attr/selectableItemBackground">
-                    <ImageView android:layout_width="36dp" android:layout_height="36dp"
-                        android:src="@drawable/ic_dog" android:background="@drawable/bg_circle_green_light"
-                        android:padding="8dp" />
-                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
-                        android:layout_weight="1" android:layout_marginStart="12dp" android:orientation="vertical">
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                            android:text="Max" android:fontFamily="@font/poppins_bold" />
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                            android:text="Golden Retriever · 5 años" android:textSize="11sp" android:textColor="@color/text_secondary_light" />
-                    </LinearLayout>
-                    <ImageView android:id="@+id/btn_delete_max" android:layout_width="20dp" android:layout_height="20dp"
-                        android:src="@drawable/ic_trash" app:tint="@color/alert_red" android:clickable="true" android:focusable="true" />
-                </LinearLayout>
+                    android:id="@+id/container_pets_settings"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+
+                <View android:layout_width="match_parent" android:layout_height="1dp"
+                    android:background="@color/border_light"
+                    android:layout_marginHorizontal="16dp" />
                 <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/border_light" android:layout_marginHorizontal="16dp" />
                 <LinearLayout
                     android:id="@+id/row_guardians"

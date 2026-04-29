@@ -32,79 +32,213 @@
                     android:src="@drawable/ic_arrow_back"
                     app:tint="@color/boop_green" />
             </FrameLayout>
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Historial médico"
-                android:textSize="18sp"
-                android:fontFamily="@font/poppins_bold"
-                android:textColor="@color/text_primary_light"
-                android:layout_marginStart="12dp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Mochi"
-                android:textSize="12sp"
-                android:textColor="@color/text_tertiary_light"
-                android:layout_marginStart="8dp" />
+                android:layout_weight="1"
+                android:layout_marginStart="12dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Añadir visita médica"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:textColor="@color/text_primary_light" />
+                <TextView
+                    android:id="@+id/tv_pet_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="12sp"
+                    android:textColor="@color/text_tertiary_light" />
+            </LinearLayout>
         </LinearLayout>
 
-        <!-- Lista de visitas médicas -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingHorizontal="20dp">
+            android:paddingHorizontal="24dp">
 
-            <!-- Visita 1 -->
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="2dp">
-                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="16dp" android:gravity="center_vertical">
-                    <ImageView android:layout_width="36dp" android:layout_height="36dp"
-                        android:src="@drawable/ic_info" android:background="@drawable/bg_ico_blue"
-                        android:padding="8dp" app:tint="#6366F1" />
-                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="12dp" android:orientation="vertical">
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Revisión general" android:fontFamily="@font/poppins_bold" />
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Clínica Vetica · Dr. López" android:textSize="11sp" android:textColor="@color/text_secondary_light" />
-                    </LinearLayout>
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="15 feb 2025" android:textSize="11sp" android:textColor="@color/text_tertiary_light" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            <!-- Tipo -->
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Tipo" android:textSize="13sp" android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/text_primary_light" android:layout_marginBottom="10dp" />
 
-            <!-- Visita 2 (Alerta Roja) -->
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="2dp">
-                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="16dp" android:gravity="center_vertical">
-                    <ImageView android:layout_width="36dp" android:layout_height="36dp"
-                        android:src="@drawable/ic_vaccine" android:background="@drawable/bg_ico_blue"
-                        android:padding="8dp" app:tint="#6366F1" />
-                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="12dp" android:orientation="vertical">
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Vacuna antirrábica" android:fontFamily="@font/poppins_bold" />
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Clínica Vetica · Anual" android:textSize="11sp" android:textColor="@color/text_secondary_light" />
-                    </LinearLayout>
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Vencido" android:textSize="10sp" android:textColor="@color/alert_red" android:fontFamily="@font/poppins_bold" />
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:layout_marginBottom="20dp">
+                <LinearLayout android:id="@+id/btn_type_vaccine" android:layout_width="0dp"
+                    android:layout_height="64dp" android:layout_weight="1" android:orientation="vertical"
+                    android:gravity="center" android:background="@drawable/bg_species_btn_active"
+                    android:layout_marginEnd="6dp" android:clickable="true" android:focusable="true">
+                    <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                        android:src="@drawable/ic_vaccine" app:tint="@color/boop_green" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Vacuna" android:textSize="10sp" android:fontFamily="@font/poppins_semibold"
+                        android:textColor="@color/boop_green_dark" android:layout_marginTop="4dp" />
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
+                <LinearLayout android:id="@+id/btn_type_deworming" android:layout_width="0dp"
+                    android:layout_height="64dp" android:layout_weight="1" android:orientation="vertical"
+                    android:gravity="center" android:background="@drawable/bg_species_btn_inactive"
+                    android:layout_marginEnd="6dp" android:clickable="true" android:focusable="true">
+                    <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                        android:src="@drawable/ic_deworming" app:tint="@color/text_secondary_light" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Desparasitar" android:textSize="10sp" android:fontFamily="@font/poppins_semibold"
+                        android:textColor="@color/text_secondary_light" android:layout_marginTop="4dp" />
+                </LinearLayout>
+                <LinearLayout android:id="@+id/btn_type_medication" android:layout_width="0dp"
+                    android:layout_height="64dp" android:layout_weight="1" android:orientation="vertical"
+                    android:gravity="center" android:background="@drawable/bg_species_btn_inactive"
+                    android:layout_marginEnd="6dp" android:clickable="true" android:focusable="true">
+                    <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                        android:src="@drawable/ic_medication" app:tint="@color/text_secondary_light" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Medicación" android:textSize="10sp" android:fontFamily="@font/poppins_semibold"
+                        android:textColor="@color/text_secondary_light" android:layout_marginTop="4dp" />
+                </LinearLayout>
+                <LinearLayout android:id="@+id/btn_type_vet" android:layout_width="0dp"
+                    android:layout_height="64dp" android:layout_weight="1" android:orientation="vertical"
+                    android:gravity="center" android:background="@drawable/bg_species_btn_inactive"
+                    android:layout_marginEnd="6dp" android:clickable="true" android:focusable="true">
+                    <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                        android:src="@drawable/ic_stethoscope" app:tint="@color/text_secondary_light" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Cita vet." android:textSize="10sp" android:fontFamily="@font/poppins_semibold"
+                        android:textColor="@color/text_secondary_light" android:layout_marginTop="4dp" />
+                </LinearLayout>
+                <LinearLayout android:id="@+id/btn_type_other" android:layout_width="0dp"
+                    android:layout_height="64dp" android:layout_weight="1" android:orientation="vertical"
+                    android:gravity="center" android:background="@drawable/bg_species_btn_inactive"
+                    android:clickable="true" android:focusable="true">
+                    <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                        android:src="@drawable/ic_more" app:tint="@color/text_secondary_light" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Otro" android:textSize="10sp" android:fontFamily="@font/poppins_semibold"
+                        android:textColor="@color/text_secondary_light" android:layout_marginTop="4dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Título * -->
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Título *" android:textSize="13sp" android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/text_primary_light" android:layout_marginBottom="8dp" />
+            <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_marginBottom="16dp"
+                app:hintEnabled="false"
+                app:boxCornerRadiusBottomEnd="12dp" app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp" app:boxCornerRadiusTopStart="12dp"
+                app:boxStrokeColor="@color/boop_green" app:boxBackgroundColor="@color/boop_green_light"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/et_visit_title"
+                    android:layout_width="match_parent" android:layout_height="56dp"
+                    android:hint="Vacuna antirrábica" android:fontFamily="@font/poppins_regular"
+                    android:textSize="14sp" android:textColor="@color/text_primary_light" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Fecha + Próxima visita -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:layout_marginBottom="16dp">
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:orientation="vertical" android:layout_marginEnd="12dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Fecha *" android:textSize="13sp" android:fontFamily="@font/poppins_semibold"
+                        android:textColor="@color/text_primary_light" android:layout_marginBottom="8dp" />
+                    <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent"
+                        android:layout_height="wrap_content" app:hintEnabled="false"
+                        app:boxCornerRadiusBottomEnd="12dp" app:boxCornerRadiusBottomStart="12dp"
+                        app:boxCornerRadiusTopEnd="12dp" app:boxCornerRadiusTopStart="12dp"
+                        app:boxStrokeColor="@color/border_light" app:boxBackgroundColor="@color/background_light"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                        <com.google.android.material.textfield.TextInputEditText android:id="@+id/et_visit_date"
+                            android:layout_width="match_parent" android:layout_height="56dp"
+                            android:hint="DD/MM/AAAA" android:fontFamily="@font/poppins_regular"
+                            android:textSize="14sp" android:inputType="date"
+                            android:textColor="@color/text_primary_light" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:orientation="vertical">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Próxima visita" android:textSize="13sp" android:fontFamily="@font/poppins_semibold"
+                        android:textColor="@color/text_primary_light" android:layout_marginBottom="8dp" />
+                    <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent"
+                        android:layout_height="wrap_content" app:hintEnabled="false"
+                        app:boxCornerRadiusBottomEnd="12dp" app:boxCornerRadiusBottomStart="12dp"
+                        app:boxCornerRadiusTopEnd="12dp" app:boxCornerRadiusTopStart="12dp"
+                        app:boxStrokeColor="@color/border_light" app:boxBackgroundColor="@color/background_light"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                        <com.google.android.material.textfield.TextInputEditText android:id="@+id/et_next_date"
+                            android:layout_width="match_parent" android:layout_height="56dp"
+                            android:hint="DD/MM/AAAA" android:fontFamily="@font/poppins_regular"
+                            android:textSize="14sp" android:inputType="date"
+                            android:textColor="@color/text_primary_light" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Clínica -->
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Clínica / Veterinario" android:textSize="13sp" android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/text_primary_light" android:layout_marginBottom="8dp" />
+            <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_marginBottom="16dp"
+                app:hintEnabled="false"
+                app:boxCornerRadiusBottomEnd="12dp" app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp" app:boxCornerRadiusTopStart="12dp"
+                app:boxStrokeColor="@color/border_light" app:boxBackgroundColor="@color/background_light"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/et_clinic"
+                    android:layout_width="match_parent" android:layout_height="56dp"
+                    android:hint="Clínica Vetica" android:fontFamily="@font/poppins_regular"
+                    android:textSize="14sp" android:textColor="@color/text_primary_light" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Doctor -->
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Doctor" android:textSize="13sp" android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/text_primary_light" android:layout_marginBottom="8dp" />
+            <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_marginBottom="16dp"
+                app:hintEnabled="false"
+                app:boxCornerRadiusBottomEnd="12dp" app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp" app:boxCornerRadiusTopStart="12dp"
+                app:boxStrokeColor="@color/border_light" app:boxBackgroundColor="@color/background_light"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/et_doctor"
+                    android:layout_width="match_parent" android:layout_height="56dp"
+                    android:hint="Dr. López" android:fontFamily="@font/poppins_regular"
+                    android:textSize="14sp" android:textColor="@color/text_primary_light" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Notas -->
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Notas" android:textSize="13sp" android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/text_primary_light" android:layout_marginBottom="8dp" />
+            <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_marginBottom="24dp"
+                app:hintEnabled="false"
+                app:boxCornerRadiusBottomEnd="12dp" app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp" app:boxCornerRadiusTopStart="12dp"
+                app:boxStrokeColor="@color/border_light" app:boxBackgroundColor="@color/background_light"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/et_notes"
+                    android:layout_width="match_parent" android:layout_height="100dp"
+                    android:hint="Observaciones de la visita..." android:fontFamily="@font/poppins_regular"
+                    android:textSize="14sp" android:gravity="top"
+                    android:textColor="@color/text_primary_light" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_save_visit"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="Guardar visita"
+                android:fontFamily="@font/poppins_bold"
+                app:backgroundTint="@color/boop_green"
+                app:cornerRadius="16dp" />
 
         </LinearLayout>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_save_visit"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginHorizontal="24dp"
-            android:text="+ Añadir visita"
-            android:fontFamily="@font/poppins_bold"
-            app:backgroundTint="@color/boop_green"
-            app:cornerRadius="16dp" />
-
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

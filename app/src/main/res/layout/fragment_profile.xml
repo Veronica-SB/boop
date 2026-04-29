@@ -35,8 +35,12 @@
                 android:background="@drawable/bg_circle_green_light"
                 android:clickable="true"
                 android:focusable="true">
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:layout_gravity="center" android:text="⚙️" android:textSize="16sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="⚙️"
+                    android:textSize="16sp" />
             </FrameLayout>
         </LinearLayout>
 
@@ -86,19 +90,10 @@
                     android:id="@+id/tv_user_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Narcís Torres"
+                    android:text=""
                     android:textSize="18sp"
                     android:fontFamily="@font/poppins_bold"
                     android:textColor="@color/text_primary_light" />
-                <TextView
-                    android:id="@+id/tv_user_location"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="📍 Girona, Cataluña"
-                    android:textSize="13sp"
-                    android:fontFamily="@font/poppins_regular"
-                    android:textColor="@color/text_secondary_light"
-                    android:layout_marginTop="4dp" />
 
                 <!-- Stats row -->
                 <LinearLayout
@@ -106,6 +101,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_marginTop="16dp">
+
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -113,9 +109,10 @@
                         android:orientation="vertical"
                         android:gravity="center">
                         <TextView
+                            android:id="@+id/tv_stat_pets"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="2"
+                            android:text="0"
                             android:textSize="18sp"
                             android:fontFamily="@font/poppins_bold"
                             android:textColor="@color/boop_green" />
@@ -127,7 +124,12 @@
                             android:fontFamily="@font/poppins_regular"
                             android:textColor="@color/text_secondary_light" />
                     </LinearLayout>
-                    <View android:layout_width="1dp" android:layout_height="40dp" android:background="@color/border_light" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="40dp"
+                        android:background="@color/border_light" />
+
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -135,9 +137,10 @@
                         android:orientation="vertical"
                         android:gravity="center">
                         <TextView
+                            android:id="@+id/tv_stat_alerts"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="5"
+                            android:text="0"
                             android:textSize="18sp"
                             android:fontFamily="@font/poppins_bold"
                             android:textColor="@color/boop_green" />
@@ -149,7 +152,12 @@
                             android:fontFamily="@font/poppins_regular"
                             android:textColor="@color/text_secondary_light" />
                     </LinearLayout>
-                    <View android:layout_width="1dp" android:layout_height="40dp" android:background="@color/border_light" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="40dp"
+                        android:background="@color/border_light" />
+
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -157,9 +165,10 @@
                         android:orientation="vertical"
                         android:gravity="center">
                         <TextView
+                            android:id="@+id/tv_stat_posts"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="12"
+                            android:text="0"
                             android:textSize="18sp"
                             android:fontFamily="@font/poppins_bold"
                             android:textColor="@color/boop_green" />
@@ -171,6 +180,7 @@
                             android:fontFamily="@font/poppins_regular"
                             android:textColor="@color/text_secondary_light" />
                     </LinearLayout>
+
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -203,65 +213,130 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <LinearLayout android:id="@+id/btn_edit_profile"
-                    android:layout_width="match_parent" android:layout_height="56dp"
-                    android:orientation="horizontal" android:gravity="center_vertical"
-                    android:paddingStart="20dp" android:paddingEnd="20dp"
-                    android:clickable="true" android:focusable="true"
+                <LinearLayout
+                    android:id="@+id/btn_edit_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:background="?attr/selectableItemBackground">
-                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
-                        android:text="✏️  Editar perfil" android:textSize="14sp"
-                        android:fontFamily="@font/poppins_regular" android:textColor="@color/text_primary_light" />
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:text="›" android:textSize="20sp" android:textColor="@color/text_tertiary_light" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="✏️  Editar perfil"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/text_primary_light" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="›"
+                        android:textSize="20sp"
+                        android:textColor="@color/text_tertiary_light" />
                 </LinearLayout>
 
-                <View android:layout_width="match_parent" android:layout_height="1dp"
-                    android:background="@color/border_light" android:layout_marginStart="20dp" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/border_light"
+                    android:layout_marginStart="20dp" />
 
-                <LinearLayout android:id="@+id/btn_notifications_settings"
-                    android:layout_width="match_parent" android:layout_height="56dp"
-                    android:orientation="horizontal" android:gravity="center_vertical"
-                    android:paddingStart="20dp" android:paddingEnd="20dp"
-                    android:clickable="true" android:focusable="true"
+                <LinearLayout
+                    android:id="@+id/btn_notifications_settings"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:background="?attr/selectableItemBackground">
-                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
-                        android:text="🔔  Notificaciones" android:textSize="14sp"
-                        android:fontFamily="@font/poppins_regular" android:textColor="@color/text_primary_light" />
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:text="›" android:textSize="20sp" android:textColor="@color/text_tertiary_light" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="🔔  Notificaciones"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/text_primary_light" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="›"
+                        android:textSize="20sp"
+                        android:textColor="@color/text_tertiary_light" />
                 </LinearLayout>
 
-                <View android:layout_width="match_parent" android:layout_height="1dp"
-                    android:background="@color/border_light" android:layout_marginStart="20dp" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/border_light"
+                    android:layout_marginStart="20dp" />
 
-                <LinearLayout android:id="@+id/btn_privacy"
-                    android:layout_width="match_parent" android:layout_height="56dp"
-                    android:orientation="horizontal" android:gravity="center_vertical"
-                    android:paddingStart="20dp" android:paddingEnd="20dp"
-                    android:clickable="true" android:focusable="true"
+                <LinearLayout
+                    android:id="@+id/btn_privacy"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:background="?attr/selectableItemBackground">
-                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
-                        android:text="🔒  Privacidad" android:textSize="14sp"
-                        android:fontFamily="@font/poppins_regular" android:textColor="@color/text_primary_light" />
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:text="›" android:textSize="20sp" android:textColor="@color/text_tertiary_light" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="🔒  Privacidad"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/text_primary_light" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="›"
+                        android:textSize="20sp"
+                        android:textColor="@color/text_tertiary_light" />
                 </LinearLayout>
 
-                <View android:layout_width="match_parent" android:layout_height="1dp"
-                    android:background="@color/border_light" android:layout_marginStart="20dp" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/border_light"
+                    android:layout_marginStart="20dp" />
 
-                <LinearLayout android:id="@+id/btn_logout"
-                    android:layout_width="match_parent" android:layout_height="56dp"
-                    android:orientation="horizontal" android:gravity="center_vertical"
-                    android:paddingStart="20dp" android:paddingEnd="20dp"
-                    android:clickable="true" android:focusable="true"
+                <LinearLayout
+                    android:id="@+id/btn_logout"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:background="?attr/selectableItemBackground">
-                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
-                        android:text="🚪  Cerrar sesión" android:textSize="14sp"
-                        android:fontFamily="@font/poppins_regular" android:textColor="@color/alert_red" />
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:text="›" android:textSize="20sp" android:textColor="@color/text_tertiary_light" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="🚪  Cerrar sesión"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/alert_red" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="›"
+                        android:textSize="20sp"
+                        android:textColor="@color/text_tertiary_light" />
                 </LinearLayout>
 
             </LinearLayout>
