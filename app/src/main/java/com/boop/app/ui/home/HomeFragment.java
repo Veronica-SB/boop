@@ -18,6 +18,7 @@ import com.boop.app.R;
 import com.boop.app.data.model.Pet;
 import com.boop.app.data.model.PetAlert;
 import com.boop.app.ui.addpet.AddPetActivity;
+import com.boop.app.ui.pet.PetListActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -47,9 +48,17 @@ public class HomeFragment extends Fragment {
         // Saludo con nombre del usuario
 
         String displayName = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+        TextView tvGreeting = view.findViewById(R.id.tv_greeting);
+
         if (displayName != null && !displayName.isEmpty()) {
-            ((TextView) view.findViewById(R.id.tv_greeting))
-                    .setText("¡Hola, " + displayName + "! 👋");
+            tvGreeting.setText("¡Hola, " + displayName + "! 👋");
+        } else {
+            db.collection("users").document(currentUserId).get()
+                    .addOnSuccessListener(doc -> {
+                        String name = doc.getString("name");
+                        tvGreeting.setText("¡Hola, " +
+                                (name != null && !name.isEmpty() ? name : "!") + " 👋");
+                    });
         }
 
 
@@ -63,10 +72,10 @@ public class HomeFragment extends Fragment {
             Navigation.findNavController(v).navigate(R.id.alertsFragment);
         });
 
-        // "Ver todas" las mascotas -> Simulado (abre Ajustes para gestionarlas)
-        view.findViewById(R.id.tv_see_all_pets).setOnClickListener(v -> {
-            Navigation.findNavController(v).navigate(R.id.profileFragment);
-        });
+        // "Ver todas" las mascotas
+        view.findViewById(R.id.tv_see_all_pets).setOnClickListener(v ->
+                startActivity(new Intent(requireContext(), PetListActivity.class)));
+
 
         // Botón añadir mascota
         view.findViewById(R.id.btn_add_pet).setOnClickListener(v -> {

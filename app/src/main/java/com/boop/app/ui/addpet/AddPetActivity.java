@@ -104,8 +104,7 @@ public class AddPetActivity extends AppCompatActivity {
         // ── Create pet ───────────────────────────────────────────────────────
         findViewById(R.id.btn_create_pet).setOnClickListener(v -> {
             if (validateForm()) {
-                startActivity(new Intent(this, HomeActivity.class));
-                finish();
+                savePet(); // savePet() ya navega al Home cuando termina
             }
         });
 

@@ -31,7 +31,7 @@
                     android:id="@+id/tv_greeting"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="¡Hola, Narcís! 👋"
+                    android:text="¡Hola! 👋"
                     android:textSize="22sp"
                     android:fontFamily="@font/poppins_bold"
                     android:textColor="@color/text_primary_light" />
@@ -45,7 +45,6 @@
                     android:layout_marginTop="2dp" />
             </LinearLayout>
 
-            <!-- Bell icon -->
             <FrameLayout
                 android:id="@+id/btn_notifications"
                 android:layout_width="40dp"
@@ -106,42 +105,6 @@
                 android:orientation="horizontal"
                 android:gravity="center_vertical">
 
-                <!-- Pet card sample -->
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:layout_marginEnd="16dp"
-                    android:clickable="true"
-                    android:focusable="true">
-                    <FrameLayout
-                        android:layout_width="72dp"
-                        android:layout_height="72dp">
-                        <ImageView
-                            android:layout_width="72dp"
-                            android:layout_height="72dp"
-                            android:src="@drawable/ic_dog"
-                            android:background="@drawable/bg_circle_green_light"
-                            android:padding="12dp"
-                            android:scaleType="centerInside" />
-                        <!-- Status dot -->
-                        <View
-                            android:layout_width="14dp"
-                            android:layout_height="14dp"
-                            android:layout_gravity="bottom|end"
-                            android:background="@drawable/bg_status_dot_green" />
-                    </FrameLayout>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Max"
-                        android:textSize="12sp"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:textColor="@color/text_primary_light"
-                        android:layout_marginTop="6dp" />
-                </LinearLayout>
-
                 <!-- Add pet button -->
                 <LinearLayout
                     android:id="@+id/btn_add_pet"
@@ -172,7 +135,7 @@
             </LinearLayout>
         </HorizontalScrollView>
 
-        <!-- Próximas alertas section -->
+        <!-- Próximos recordatorios section -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -202,14 +165,14 @@
                 android:focusable="true" />
         </LinearLayout>
 
-        <!-- Alert container -->
+        <!-- Alert container dinámico -->
         <LinearLayout
             android:id="@+id/alerts_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" />
 
-        <!-- Veterinarios cercanos section -->
+        <!-- Cerca de ti section -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -238,189 +201,6 @@
                 android:clickable="true"
                 android:focusable="true" />
         </LinearLayout>
-
-        <!-- Nearby places horizontal scroll -->
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scrollbars="none"
-            android:paddingStart="24dp"
-            android:paddingEnd="24dp">
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <!-- Vet card -->
-                <androidx.cardview.widget.CardView
-                    android:layout_width="160dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="12dp"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="0dp"
-                    app:cardBackgroundColor="@color/surface_light">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="14dp">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:layout_marginBottom="8dp">
-                            <FrameLayout
-                                android:layout_width="36dp"
-                                android:layout_height="36dp"
-                                android:background="@drawable/bg_rounded_green"
-                                android:layout_marginEnd="10dp">
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:text="🏥"
-                                    android:textSize="16sp" />
-                            </FrameLayout>
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Clínica Vetica"
-                                    android:textSize="12sp"
-                                    android:fontFamily="@font/poppins_bold"
-                                    android:textColor="@color/text_primary_light" />
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Veterinario"
-                                    android:textSize="11sp"
-                                    android:fontFamily="@font/poppins_regular"
-                                    android:textColor="@color/text_secondary_light" />
-                            </LinearLayout>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="⭐ 4.8"
-                                android:textSize="11sp"
-                                android:fontFamily="@font/poppins_regular"
-                                android:textColor="@color/text_secondary_light" />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="· 320m"
-                                android:textSize="11sp"
-                                android:fontFamily="@font/poppins_regular"
-                                android:textColor="@color/text_secondary_light"
-                                android:layout_marginStart="4dp" />
-                            <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Abierto"
-                                android:textSize="11sp"
-                                android:fontFamily="@font/poppins_semibold"
-                                android:textColor="@color/boop_green" />
-                        </LinearLayout>
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <!-- Groomer card -->
-                <androidx.cardview.widget.CardView
-                    android:layout_width="160dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="12dp"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="0dp"
-                    app:cardBackgroundColor="@color/surface_light">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="14dp">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:layout_marginBottom="8dp">
-                            <FrameLayout
-                                android:layout_width="36dp"
-                                android:layout_height="36dp"
-                                android:background="@drawable/bg_rounded_purple"
-                                android:layout_marginEnd="10dp">
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:text="✂️"
-                                    android:textSize="16sp" />
-                            </FrameLayout>
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Pelu Pets"
-                                    android:textSize="12sp"
-                                    android:fontFamily="@font/poppins_bold"
-                                    android:textColor="@color/text_primary_light" />
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Peluquería"
-                                    android:textSize="11sp"
-                                    android:fontFamily="@font/poppins_regular"
-                                    android:textColor="@color/text_secondary_light" />
-                            </LinearLayout>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="⭐ 4.7"
-                                android:textSize="11sp"
-                                android:fontFamily="@font/poppins_regular"
-                                android:textColor="@color/text_secondary_light" />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="· 150m"
-                                android:textSize="11sp"
-                                android:fontFamily="@font/poppins_regular"
-                                android:textColor="@color/text_secondary_light"
-                                android:layout_marginStart="4dp" />
-                            <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Abierto"
-                                android:textSize="11sp"
-                                android:fontFamily="@font/poppins_semibold"
-                                android:textColor="@color/boop_green" />
-                        </LinearLayout>
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-            </LinearLayout>
-        </HorizontalScrollView>
 
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>
