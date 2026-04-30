@@ -15,6 +15,7 @@ import com.boop.app.data.model.Pet;
 import com.boop.app.ui.addpet.AddPetActivity;
 import com.boop.app.ui.auth.AuthActivity;
 import com.boop.app.ui.medical.AddMedicalVisitActivity;
+import com.boop.app.ui.profile.EditProfileActivity;
 import com.boop.app.utils.ThemeManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -65,7 +66,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         // ── Editar perfil ─────────────────────────────────────────
         findViewById(R.id.btn_edit_profile).setOnClickListener(v ->
-                Toast.makeText(this, "Editar perfil...", Toast.LENGTH_SHORT).show());
+                startActivity(new Intent(this, EditProfileActivity.class)));
 
         // ── Añadir mascota ────────────────────────────────────────
         findViewById(R.id.row_add_pet).setOnClickListener(v ->
