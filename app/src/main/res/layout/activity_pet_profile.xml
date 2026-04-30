@@ -44,6 +44,18 @@
                 android:textSize="18sp"
                 android:fontFamily="@font/poppins_bold"
                 android:textColor="@color/text_primary_light" />
+
+            <TextView
+                android:id="@+id/btn_edit_pet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Editar"
+                android:textSize="13sp"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/boop_green"
+                android:clickable="true"
+                android:focusable="true" />
+
         </LinearLayout>
 
         <!-- Pet info card -->

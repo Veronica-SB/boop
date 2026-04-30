@@ -1,10 +1,13 @@
 package com.boop.app.ui.medical;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import com.boop.app.R;
@@ -41,10 +44,13 @@ public class VaccinesActivity extends AppCompatActivity {
 
         findViewById(R.id.btn_back).setOnClickListener(v -> finish());
 
-        // TODO: conectar btn_register_vaccine con formulario de registro
-        findViewById(R.id.btn_register_vaccine).setOnClickListener(v ->
-                android.widget.Toast.makeText(this,
-                        "Registro de vacunas (Próximamente)", android.widget.Toast.LENGTH_SHORT).show());
+        findViewById(R.id.btn_register_vaccine).setOnClickListener(v -> {
+            Intent intent = new Intent(this, AddVaccineActivity.class);
+            intent.putExtra(AddVaccineActivity.EXTRA_PET_ID, petId);
+            intent.putExtra(AddVaccineActivity.EXTRA_PET_NAME,
+                    ((TextView) findViewById(R.id.tv_pet_name)).getText().toString());
+            startActivity(intent);
+        });
 
         loadVaccines();
     }
@@ -148,6 +154,32 @@ public class VaccinesActivity extends AppCompatActivity {
         badge.setBackgroundResource(badgeBg);
         badge.setPadding(dpToPx(8), dpToPx(3), dpToPx(8), dpToPx(3));
         row.addView(badge);
+
+        // Botón eliminar
+        TextView btnDelete = new TextView(this);
+        btnDelete.setText("Eliminar");
+        btnDelete.setTextSize(11);
+        btnDelete.setTextColor(getColor(R.color.alert_red));
+        btnDelete.setPadding(dpToPx(4), dpToPx(4), dpToPx(4), dpToPx(4));
+        btnDelete.setClickable(true);
+        btnDelete.setFocusable(true);
+        btnDelete.setOnClickListener(v ->
+                new androidx.appcompat.app.AlertDialog.Builder(this)
+                        .setTitle("Eliminar vacuna")
+                        .setMessage("¿Seguro que quieres eliminar " + vaccine.getName() + "?")
+                        .setPositiveButton("Eliminar", (dialog, which) ->
+                                db.collection("pets").document(petId)
+                                        .collection("vaccines").document(vaccine.getId())
+                                        .delete()
+                                        .addOnSuccessListener(unused -> {
+                                            Toast.makeText(this, "Vacuna eliminada", Toast.LENGTH_SHORT).show();
+                                            loadVaccines();
+                                        })
+                        )
+                        .setNegativeButton("Cancelar", null)
+                        .show()
+        );
+        row.addView(btnDelete);
 
         return card;
     }

@@ -54,6 +54,11 @@
         <activity android:name=".ui.pet.PetProfileActivity" />
         <activity android:name=".ui.pet.PetListActivity" />
 
+        <!-- PERFIL PERSONA -->
+        <activity
+            android:name=".ui.profile.EditProfileActivity"
+            android:exported="false" />
+
         <!-- HOME PRINCIPAL -->
         <activity
             android:name=".HomeActivity"
@@ -64,9 +69,14 @@
             android:name=".ui.settings.SettingsActivity"
             android:exported="false" />
 
-        <!-- COMUNIDAD - CREAR POST -->
+        <!-- COMUNIDAD - CREAR POST Y COMENTARIOS-->
         <activity
             android:name=".ui.community.CreatePostActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".ui.community.PostDetailActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
@@ -83,6 +93,10 @@
         <!-- VACUNAS -->
         <activity
             android:name=".ui.medical.VaccinesActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.medical.AddVaccineActivity"
             android:exported="false" />
 
         <!-- RECORDATORIOS - AÑADIR -->

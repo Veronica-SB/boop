@@ -7,7 +7,6 @@ import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,36 +17,35 @@ import com.boop.app.HomeActivity;
 import com.boop.app.R;
 import com.boop.app.data.model.Pet;
 import com.boop.app.utils.ThemeManager;
-import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 public class AddPetActivity extends AppCompatActivity {
 
+    public static final String EXTRA_PET_ID = "pet_id";
+
     // 0=Gato, 1=Perro, 2=Conejo, 3=Ave
     private int selectedSpecies = 0;
     private Uri selectedImageUri;
-
     private boolean vetManualMode = false;
+    private String petId = null;
+    private boolean isEditMode = false;
 
     private FirebaseFirestore db;
     private FirebaseStorage storage;
     private String currentUserId;
 
-    // Launcher para seleccionar imagen de la galería
     private final ActivityResultLauncher<Intent> galleryLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
                 if (result.getResultCode() == RESULT_OK && result.getData() != null) {
                     selectedImageUri = result.getData().getData();
-                    // Mostrar miniatura (asumiendo que hay un ImageView o similar)
                     Toast.makeText(this, "Imagen seleccionada", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -59,12 +57,22 @@ public class AddPetActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_pet);
 
-        db = FirebaseFirestore.getInstance();
-        storage = FirebaseStorage.getInstance();
+        db            = FirebaseFirestore.getInstance();
+        storage       = FirebaseStorage.getInstance();
         currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
+        // ── Modo edición ──────────────────────────────────────────────
+        petId      = getIntent().getStringExtra(EXTRA_PET_ID);
+        isEditMode = petId != null;
 
-        // ── Species buttons ──────────────────────────────────────────────────
+        if (isEditMode) {
+            com.google.android.material.button.MaterialButton btnCreate =
+                    findViewById(R.id.btn_create_pet);
+            btnCreate.setText("Guardar cambios");
+            loadPetData();
+        }
+
+        // ── Species buttons ───────────────────────────────────────────
         LinearLayout btnCat    = findViewById(R.id.btn_species_cat);
         LinearLayout btnDog    = findViewById(R.id.btn_species_dog);
         LinearLayout btnRabbit = findViewById(R.id.btn_species_rabbit);
@@ -88,30 +96,82 @@ public class AddPetActivity extends AppCompatActivity {
         btnRabbit.setOnClickListener(speciesListener);
         btnBird.setOnClickListener(speciesListener);
 
-        // ── Vet mode tabs (Mantenemos funcionalidad previa) ────────────────
-        // ... (asumiendo que el código previo está integrado o lo reintegro)
         setupVetTabs();
 
-        // ── Foto ────────────────────────────────────────────────────────────
+        // ── Foto ──────────────────────────────────────────────────────
         findViewById(R.id.btn_photo_upload).setOnClickListener(v -> {
-            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            Intent intent = new Intent(Intent.ACTION_PICK,
+                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             galleryLauncher.launch(intent);
         });
 
-        // ── Back ────────────────────────────────────────────────────────────
+        // ── Back ──────────────────────────────────────────────────────
         findViewById(R.id.btn_back).setOnClickListener(v -> finish());
 
-        // ── Create pet ───────────────────────────────────────────────────────
+        // ── Guardar ───────────────────────────────────────────────────
         findViewById(R.id.btn_create_pet).setOnClickListener(v -> {
-            if (validateForm()) {
-                savePet(); // savePet() ya navega al Home cuando termina
-            }
+            if (validateForm()) savePet();
         });
 
         updateChipFieldRequirement();
     }
+
+    // ── Cargar datos en modo edición ──────────────────────────────
+
+    private void loadPetData() {
+        db.collection("pets").document(petId).get()
+                .addOnSuccessListener(doc -> {
+                    Pet pet = doc.toObject(Pet.class);
+                    if (pet == null) return;
+
+                    setValue(R.id.et_pet_name,    pet.getName());
+                    setValue(R.id.et_breed,       pet.getBreed());
+                    setValue(R.id.et_weight,
+                            pet.getWeightKg() != null ? String.valueOf(pet.getWeightKg()) : "");
+                    setValue(R.id.et_chip,        pet.getChipNumber());
+                    setValue(R.id.et_pet_license, pet.getLicenseNumber());
+                    setValue(R.id.et_allergies,   pet.getAllergies());
+                    setValue(R.id.et_vet_manual,  pet.getVetClinic());
+
+                    if (pet.getSex() != null) {
+                        if (Pet.PetSex.MALE.name().equals(pet.getSex()))
+                            setValue(R.id.et_sex, "Macho");
+                        else if (Pet.PetSex.FEMALE.name().equals(pet.getSex()))
+                            setValue(R.id.et_sex, "Hembra");
+                    }
+
+                    if (pet.getBirthDate() != null) {
+                        setValue(R.id.et_birthdate,
+                                new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                                        .format(pet.getBirthDate()));
+                    }
+
+                    // Seleccionar especie
+                    LinearLayout btnCat    = findViewById(R.id.btn_species_cat);
+                    LinearLayout btnDog    = findViewById(R.id.btn_species_dog);
+                    LinearLayout btnRabbit = findViewById(R.id.btn_species_rabbit);
+                    LinearLayout btnBird   = findViewById(R.id.btn_species_bird);
+                    resetSpecies(btnCat, btnDog, btnRabbit, btnBird);
+
+                    LinearLayout selectedBtn;
+                    if (Pet.PetSpecies.DOG.name().equals(pet.getSpecies())) {
+                        selectedSpecies = 1; selectedBtn = btnDog;
+                    } else if (Pet.PetSpecies.RABBIT.name().equals(pet.getSpecies())) {
+                        selectedSpecies = 2; selectedBtn = btnRabbit;
+                    } else if (Pet.PetSpecies.BIRD.name().equals(pet.getSpecies())) {
+                        selectedSpecies = 3; selectedBtn = btnBird;
+                    } else {
+                        selectedSpecies = 0; selectedBtn = btnCat;
+                    }
+                    selectedBtn.setBackgroundResource(R.drawable.bg_species_btn_active);
+                    setSpeciesTextColor(selectedBtn, R.color.boop_green_dark);
+                    setSpeciesIconTint(selectedBtn, R.color.boop_green);
+                });
+    }
+
+    // ── Guardar mascota ───────────────────────────────────────────
+
     private void savePet() {
-        // ── Leer campos del formulario ────────────────────────────────
         String name        = getValue(R.id.et_pet_name);
         String breed       = getValue(R.id.et_breed);
         String sexInput    = getValue(R.id.et_sex);
@@ -124,7 +184,6 @@ public class AddPetActivity extends AppCompatActivity {
                 ? getValue(R.id.et_vet_manual)
                 : getValue(R.id.et_vet_search);
 
-        // ── Construir objeto Pet ──────────────────────────────────────
         Pet pet = new Pet();
         pet.setOwnerId(currentUserId);
         pet.setName(name);
@@ -146,7 +205,6 @@ public class AddPetActivity extends AppCompatActivity {
             }
         }
 
-        // ── Guardar en Firestore (con o sin foto) ─────────────────────
         if (selectedImageUri != null) {
             uploadPhotoAndSave(pet);
         } else {
@@ -167,29 +225,56 @@ public class AddPetActivity extends AppCompatActivity {
                 )
                 .addOnFailureListener(e -> {
                     Toast.makeText(this, "Error al subir la foto", Toast.LENGTH_SHORT).show();
-                    saveToFirestore(pet); // guardamos igualmente sin foto
+                    saveToFirestore(pet);
                 });
     }
 
     private void saveToFirestore(Pet pet) {
-        db.collection("pets")
-                .add(pet)
-                .addOnSuccessListener(ref -> {
-                    ref.update("id", ref.getId());
-                    Toast.makeText(this, pet.getName() + " añadido/a 🐾", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(this, HomeActivity.class));
-                    finish();
-                })
-                .addOnFailureListener(e ->
-                        Toast.makeText(this, "Error al guardar. Inténtalo de nuevo.",
-                                Toast.LENGTH_SHORT).show());
+        if (isEditMode) {
+            db.collection("pets").document(petId)
+                    .update(
+                            "name",          pet.getName(),
+                            "breed",         pet.getBreed(),
+                            "sex",           pet.getSex(),
+                            "birthDate",     pet.getBirthDate(),
+                            "weightKg",      pet.getWeightKg(),
+                            "chipNumber",    pet.getChipNumber(),
+                            "licenseNumber", pet.getLicenseNumber(),
+                            "allergies",     pet.getAllergies(),
+                            "vetClinic",     pet.getVetClinic()
+                    )
+                    .addOnSuccessListener(unused -> {
+                        Toast.makeText(this, "Mascota actualizada 🐾", Toast.LENGTH_SHORT).show();
+                        finish();
+                    })
+                    .addOnFailureListener(e ->
+                            Toast.makeText(this, "Error al guardar. Inténtalo de nuevo.",
+                                    Toast.LENGTH_SHORT).show());
+        } else {
+            db.collection("pets")
+                    .add(pet)
+                    .addOnSuccessListener(ref -> {
+                        ref.update("id", ref.getId());
+                        Toast.makeText(this, pet.getName() + " añadido/a 🐾", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(this, HomeActivity.class));
+                        finish();
+                    })
+                    .addOnFailureListener(e ->
+                            Toast.makeText(this, "Error al guardar. Inténtalo de nuevo.",
+                                    Toast.LENGTH_SHORT).show());
+        }
     }
 
-    // ── Helpers ───────────────────────────────────────────────────────
+    // ── Helpers ───────────────────────────────────────────────────
 
     private String getValue(int viewId) {
         EditText et = findViewById(viewId);
         return et != null ? et.getText().toString().trim() : "";
+    }
+
+    private void setValue(int viewId, String value) {
+        EditText et = findViewById(viewId);
+        if (et != null && value != null) et.setText(value);
     }
 
     private String getSpeciesEnum() {
@@ -203,10 +288,11 @@ public class AddPetActivity extends AppCompatActivity {
 
     private String getSexEnum(String input) {
         String lower = input.toLowerCase(Locale.getDefault());
-        if (lower.contains("macho") || lower.contains("male"))   return Pet.PetSex.MALE.name();
+        if (lower.contains("macho") || lower.contains("male"))    return Pet.PetSex.MALE.name();
         if (lower.contains("hembra") || lower.contains("female")) return Pet.PetSex.FEMALE.name();
         return Pet.PetSex.UNKNOWN.name();
     }
+
     private void setupVetTabs() {
         TextView tabMaps   = findViewById(R.id.tab_vet_maps);
         TextView tabManual = findViewById(R.id.tab_vet_manual);
@@ -237,7 +323,7 @@ public class AddPetActivity extends AppCompatActivity {
         boolean required = (selectedSpecies == 0 || selectedSpecies == 1);
         TextView mark = findViewById(R.id.tv_chip_required_mark);
         TextInputLayout tilChip = findViewById(R.id.til_chip);
-        if (mark != null)   mark.setVisibility(required ? View.VISIBLE : View.GONE);
+        if (mark != null)    mark.setVisibility(required ? View.VISIBLE : View.GONE);
         if (tilChip != null) tilChip.setHint("Nº de microchip");
     }
 
@@ -261,7 +347,8 @@ public class AddPetActivity extends AppCompatActivity {
     private void setSpeciesTextColor(LinearLayout container, int colorRes) {
         for (int i = 0; i < container.getChildCount(); i++) {
             View child = container.getChildAt(i);
-            if (child instanceof TextView) ((TextView) child).setTextColor(getColor(colorRes));
+            if (child instanceof TextView)
+                ((TextView) child).setTextColor(getColor(colorRes));
         }
     }
 

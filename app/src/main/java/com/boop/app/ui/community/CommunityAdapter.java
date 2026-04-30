@@ -39,6 +39,12 @@ public class CommunityAdapter extends RecyclerView.Adapter<CommunityAdapter.Post
         holder.tvLikes.setText("❤️ " + post.getLikes());
         holder.tvComments.setText("💬 " + post.getComments());
         holder.tvTime.setText(getRelativeTime(post.getTimestamp()));
+        holder.itemView.setOnClickListener(v -> {
+            android.content.Intent intent = new android.content.Intent(
+                    v.getContext(), PostDetailActivity.class);
+            intent.putExtra(PostDetailActivity.EXTRA_POST_ID, post.getId());
+            v.getContext().startActivity(intent);
+        });
 
         if ("question".equals(post.getType())) {
             holder.tvType.setText("❓ Pregunta");
@@ -66,16 +72,36 @@ public class CommunityAdapter extends RecyclerView.Adapter<CommunityAdapter.Post
         }
 
         holder.tvLikes.setOnClickListener(v -> {
-            int nuevoLikes = post.getLikes() + 1;
-            post.setLikes(nuevoLikes);
-            holder.tvLikes.setText("❤️ " + nuevoLikes);
-            db.collection("community_posts")
+            String currentUserId = com.google.firebase.auth.FirebaseAuth
+                    .getInstance().getCurrentUser().getUid();
+
+            com.google.firebase.firestore.DocumentReference likeRef = db
+                    .collection("community_posts")
                     .document(post.getId())
-                    .update("likes", FieldValue.increment(1))
-                    .addOnFailureListener(e -> {
-                        post.setLikes(nuevoLikes - 1);
-                        holder.tvLikes.setText("❤️ " + (nuevoLikes - 1));
-                    });
+                    .collection("likes")
+                    .document(currentUserId);
+
+            likeRef.get().addOnSuccessListener(doc -> {
+                if (doc.exists()) {
+                    // Ya dio like → quitarlo
+                    likeRef.delete();
+                    int nuevosLikes = post.getLikes() - 1;
+                    post.setLikes(nuevosLikes);
+                    holder.tvLikes.setText("❤️ " + nuevosLikes);
+                    db.collection("community_posts")
+                            .document(post.getId())
+                            .update("likes", com.google.firebase.firestore.FieldValue.increment(-1));
+                } else {
+                    // No ha dado like → añadirlo
+                    likeRef.set(new java.util.HashMap<>());
+                    int nuevosLikes = post.getLikes() + 1;
+                    post.setLikes(nuevosLikes);
+                    holder.tvLikes.setText("❤️ " + nuevosLikes);
+                    db.collection("community_posts")
+                            .document(post.getId())
+                            .update("likes", com.google.firebase.firestore.FieldValue.increment(1));
+                }
+            });
         });
     }
 
