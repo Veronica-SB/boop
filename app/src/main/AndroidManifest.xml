@@ -64,9 +64,14 @@
             android:name=".ui.settings.SettingsActivity"
             android:exported="false" />
 
-        <!-- COMUNIDAD - CREAR POST -->
+        <!-- COMUNIDAD - CREAR POST Y COMENTARIOS-->
         <activity
             android:name=".ui.community.CreatePostActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".ui.community.PostDetailActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 

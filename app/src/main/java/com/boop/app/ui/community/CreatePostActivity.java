@@ -51,34 +51,43 @@ public class CreatePostActivity extends AppCompatActivity {
             return;
         }
 
-        // ── Construir post con todos los campos ───────────────────
         CommunityPost post = new CommunityPost();
         post.setUserId(currentUser.getUid());
-        post.setUserName(currentUser.getDisplayName() != null
-                ? currentUser.getDisplayName() : "Usuario");
         post.setType(type);
         post.setContent(content);
         post.setTimestamp(System.currentTimeMillis());
         post.setLikes(0);
         post.setComments(0);
 
-        // ── Leer especie de la primera mascota para el icono ──────
-        db.collection("pets")
-                .whereEqualTo("ownerId", currentUser.getUid())
-                .limit(1)
-                .get()
-                .addOnSuccessListener(pets -> {
-                    String iconType = "dog";
-                    if (!pets.isEmpty()) {
-                        String species = pets.getDocuments().get(0).getString("species");
-                        if (Pet.PetSpecies.CAT.name().equals(species))        iconType = "cat";
-                        else if (Pet.PetSpecies.RABBIT.name().equals(species)) iconType = "rabbit";
-                        else if (Pet.PetSpecies.BIRD.name().equals(species))   iconType = "bird";
-                    }
-                    post.setUserIconType(iconType);
-                    savePost(post);
+// Leer nombre desde Firestore
+        db.collection("users").document(currentUser.getUid()).get()
+                .addOnSuccessListener(userDoc -> {
+                    String name = userDoc.getString("name");
+                    post.setUserName(name != null && !name.isEmpty() ? name : "Usuario");
+
+                    // Leer especie de la primera mascota para el icono
+                    db.collection("pets")
+                            .whereEqualTo("ownerId", currentUser.getUid())
+                            .limit(1)
+                            .get()
+                            .addOnSuccessListener(pets -> {
+                                String iconType = "dog";
+                                if (!pets.isEmpty()) {
+                                    String species = pets.getDocuments().get(0).getString("species");
+                                    if (Pet.PetSpecies.CAT.name().equals(species))         iconType = "cat";
+                                    else if (Pet.PetSpecies.RABBIT.name().equals(species)) iconType = "rabbit";
+                                    else if (Pet.PetSpecies.BIRD.name().equals(species))   iconType = "bird";
+                                }
+                                post.setUserIconType(iconType);
+                                savePost(post);
+                            })
+                            .addOnFailureListener(e -> {
+                                post.setUserIconType("dog");
+                                savePost(post);
+                            });
                 })
                 .addOnFailureListener(e -> {
+                    post.setUserName("Usuario");
                     post.setUserIconType("dog");
                     savePost(post);
                 });
