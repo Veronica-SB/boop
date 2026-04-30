@@ -1,5 +1,6 @@
 package com.boop.app.ui.medical;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -41,10 +42,13 @@ public class VaccinesActivity extends AppCompatActivity {
 
         findViewById(R.id.btn_back).setOnClickListener(v -> finish());
 
-        // TODO: conectar btn_register_vaccine con formulario de registro
-        findViewById(R.id.btn_register_vaccine).setOnClickListener(v ->
-                android.widget.Toast.makeText(this,
-                        "Registro de vacunas (Próximamente)", android.widget.Toast.LENGTH_SHORT).show());
+        findViewById(R.id.btn_register_vaccine).setOnClickListener(v -> {
+            Intent intent = new Intent(this, AddVaccineActivity.class);
+            intent.putExtra(AddVaccineActivity.EXTRA_PET_ID, petId);
+            intent.putExtra(AddVaccineActivity.EXTRA_PET_NAME,
+                    ((TextView) findViewById(R.id.tv_pet_name)).getText().toString());
+            startActivity(intent);
+        });
 
         loadVaccines();
     }

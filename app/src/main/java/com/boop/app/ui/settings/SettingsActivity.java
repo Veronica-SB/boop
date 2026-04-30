@@ -42,8 +42,20 @@ public class SettingsActivity extends AppCompatActivity {
         // ── Perfil usuario ────────────────────────────────────────
         if (currentUser != null) {
             TextView tvName = findViewById(R.id.tv_user_name);
+            TextView tvEmail = findViewById(R.id.tv_user_email);
+
             if (currentUser.getDisplayName() != null)
                 tvName.setText(currentUser.getDisplayName());
+            else {
+                db.collection("users").document(currentUser.getUid()).get()
+                        .addOnSuccessListener(doc -> {
+                            String name = doc.getString("name");
+                            if (name != null) tvName.setText(name);
+                        });
+            }
+
+            if (currentUser.getEmail() != null)
+                tvEmail.setText(currentUser.getEmail());
         }
 
         // ── Avatar ────────────────────────────────────────────────
@@ -54,12 +66,6 @@ public class SettingsActivity extends AppCompatActivity {
         // ── Editar perfil ─────────────────────────────────────────
         findViewById(R.id.btn_edit_profile).setOnClickListener(v ->
                 Toast.makeText(this, "Editar perfil...", Toast.LENGTH_SHORT).show());
-
-        // ── Cuidadores ────────────────────────────────────────────
-        findViewById(R.id.row_guardians).setOnClickListener(v ->
-                Toast.makeText(this,
-                        "Accede al perfil de tu mascota para gestionar cuidadores",
-                        Toast.LENGTH_SHORT).show());
 
         // ── Añadir mascota ────────────────────────────────────────
         findViewById(R.id.row_add_pet).setOnClickListener(v ->

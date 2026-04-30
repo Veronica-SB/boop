@@ -52,6 +52,14 @@ public class Vaccine {
     @PropertyName("status")
     public void setStatus(String status)            { this.status = status; }
 
+    @PropertyName("createdBy")
+    private String createdBy;
+
+    @PropertyName("createdBy")
+    public String getCreatedBy() { return createdBy; }
+    @PropertyName("createdBy")
+    public void setCreatedBy(String createdBy) { this.createdBy = createdBy; }
+
     public enum VaccineStatus {
         UP_TO_DATE("Al día"),
         UPCOMING("Próxima"),

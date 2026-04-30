@@ -85,6 +85,10 @@
             android:name=".ui.medical.VaccinesActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".ui.medical.AddVaccineActivity"
+            android:exported="false" />
+
         <!-- RECORDATORIOS - AÑADIR -->
         <activity
             android:name=".ui.alerts.AddAlertActivity"

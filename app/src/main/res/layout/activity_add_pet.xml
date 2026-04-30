@@ -27,7 +27,7 @@
                     app:tint="@color/boop_green" />
             </FrameLayout>
             <TextView android:layout_width="0dp" android:layout_height="wrap_content"
-                android:layout_weight="1" android:text="Añade tu primera mascota"
+                android:layout_weight="1" android:text="Añade a tu mascota"
                 android:textSize="17sp" android:fontFamily="@font/poppins_bold"
                 android:textColor="@color/text_primary_light" />
         </LinearLayout>
@@ -451,13 +451,6 @@
 
             </LinearLayout>
 
-            <com.google.android.material.button.MaterialButton android:id="@+id/btn_add_vaccine"
-                android:layout_width="match_parent" android:layout_height="48dp"
-                android:text="+ Añadir otra vacuna" android:textSize="13sp"
-                android:fontFamily="@font/poppins_semibold" android:textColor="@color/boop_green"
-                app:backgroundTint="@android:color/transparent"
-                app:strokeColor="@color/boop_green_mid" app:strokeWidth="1.5dp"
-                app:cornerRadius="14dp" />
         </LinearLayout>
 
         <!-- Submit -->

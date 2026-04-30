@@ -19,6 +19,7 @@ import com.boop.app.data.model.Pet;
 import com.boop.app.data.model.PetAlert;
 import com.boop.app.ui.addpet.AddPetActivity;
 import com.boop.app.ui.pet.PetListActivity;
+import com.boop.app.ui.pet.PetProfileActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -51,13 +52,13 @@ public class HomeFragment extends Fragment {
         TextView tvGreeting = view.findViewById(R.id.tv_greeting);
 
         if (displayName != null && !displayName.isEmpty()) {
-            tvGreeting.setText("¡Hola, " + displayName + "! 👋");
+            tvGreeting.setText("Hola, " + displayName + " 👋");
         } else {
             db.collection("users").document(currentUserId).get()
                     .addOnSuccessListener(doc -> {
                         String name = doc.getString("name");
-                        tvGreeting.setText("¡Hola, " +
-                                (name != null && !name.isEmpty() ? name : "!") + " 👋");
+                        tvGreeting.setText("Hola, " +
+                                (name != null && !name.isEmpty() ? name : " 👋"));
                     });
         }
 
@@ -158,6 +159,14 @@ public class HomeFragment extends Fragment {
         nameParams.topMargin = dpToPx(6);
         tvName.setLayoutParams(nameParams);
         card.addView(tvName);
+
+        card.setClickable(true);
+        card.setFocusable(true);
+        card.setOnClickListener(v -> {
+            Intent intent = new Intent(requireContext(), PetProfileActivity.class);
+            intent.putExtra(PetProfileActivity.EXTRA_PET_ID, pet.getId());
+            startActivity(intent);
+        });
 
         return card;
     }
