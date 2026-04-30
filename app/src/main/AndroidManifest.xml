@@ -54,6 +54,11 @@
         <activity android:name=".ui.pet.PetProfileActivity" />
         <activity android:name=".ui.pet.PetListActivity" />
 
+        <!-- PERFIL PERSONA -->
+        <activity
+            android:name=".ui.profile.EditProfileActivity"
+            android:exported="false" />
+
         <!-- HOME PRINCIPAL -->
         <activity
             android:name=".HomeActivity"

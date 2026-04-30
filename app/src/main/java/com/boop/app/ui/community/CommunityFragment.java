@@ -111,8 +111,17 @@ public class CommunityFragment extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        listenToPosts();
+    }
+
+    @Override
     public void onStop() {
         super.onStop();
-        if (listenerRegistration != null) listenerRegistration.remove();
+        if (listenerRegistration != null) {
+            listenerRegistration.remove();
+            listenerRegistration = null;
+        }
     }
 }

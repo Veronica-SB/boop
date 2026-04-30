@@ -62,7 +62,7 @@ public class ProfileFragment extends Fragment {
                 startActivity(new Intent(requireContext(), SettingsActivity.class)));
 
         view.findViewById(R.id.btn_edit_profile).setOnClickListener(v ->
-                Toast.makeText(requireContext(), "Editar perfil (Próximamente)", Toast.LENGTH_SHORT).show());
+                startActivity(new Intent(requireContext(), EditProfileActivity.class)));
 
         view.findViewById(R.id.btn_notifications_settings).setOnClickListener(v ->
                 startActivity(new Intent(requireContext(), SettingsActivity.class)));

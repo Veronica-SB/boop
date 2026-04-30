@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import com.boop.app.R;
@@ -152,6 +154,32 @@ public class VaccinesActivity extends AppCompatActivity {
         badge.setBackgroundResource(badgeBg);
         badge.setPadding(dpToPx(8), dpToPx(3), dpToPx(8), dpToPx(3));
         row.addView(badge);
+
+        // Botón eliminar
+        TextView btnDelete = new TextView(this);
+        btnDelete.setText("Eliminar");
+        btnDelete.setTextSize(11);
+        btnDelete.setTextColor(getColor(R.color.alert_red));
+        btnDelete.setPadding(dpToPx(4), dpToPx(4), dpToPx(4), dpToPx(4));
+        btnDelete.setClickable(true);
+        btnDelete.setFocusable(true);
+        btnDelete.setOnClickListener(v ->
+                new androidx.appcompat.app.AlertDialog.Builder(this)
+                        .setTitle("Eliminar vacuna")
+                        .setMessage("¿Seguro que quieres eliminar " + vaccine.getName() + "?")
+                        .setPositiveButton("Eliminar", (dialog, which) ->
+                                db.collection("pets").document(petId)
+                                        .collection("vaccines").document(vaccine.getId())
+                                        .delete()
+                                        .addOnSuccessListener(unused -> {
+                                            Toast.makeText(this, "Vacuna eliminada", Toast.LENGTH_SHORT).show();
+                                            loadVaccines();
+                                        })
+                        )
+                        .setNegativeButton("Cancelar", null)
+                        .show()
+        );
+        row.addView(btnDelete);
 
         return card;
     }

@@ -58,7 +58,7 @@ public class HomeFragment extends Fragment {
                     .addOnSuccessListener(doc -> {
                         String name = doc.getString("name");
                         tvGreeting.setText("Hola, " +
-                                (name != null && !name.isEmpty() ? name : " 👋"));
+                                (name != null && !name.isEmpty() ? name : "!") + " 👋");
                     });
         }
 
