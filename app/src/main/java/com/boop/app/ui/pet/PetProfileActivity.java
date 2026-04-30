@@ -12,6 +12,7 @@ import com.boop.app.R;
 import com.boop.app.data.model.MedicalRecord;
 import com.boop.app.data.model.Pet;
 import com.boop.app.data.model.Vaccine;
+import com.boop.app.ui.addpet.AddPetActivity;
 import com.boop.app.ui.medical.AddMedicalVisitActivity;
 import com.boop.app.ui.medical.VaccinesActivity;
 import com.boop.app.ui.settings.GuardiansActivity;
@@ -59,6 +60,12 @@ public class PetProfileActivity extends AppCompatActivity {
         containerMedical   = findViewById(R.id.container_medical_history);
 
         findViewById(R.id.btn_back).setOnClickListener(v -> finish());
+
+        findViewById(R.id.btn_edit_pet).setOnClickListener(v -> {
+            Intent intent = new Intent(this, AddPetActivity.class);
+            intent.putExtra("pet_id", petId);
+            startActivity(intent);
+        });
 
         findViewById(R.id.btn_guardians).setOnClickListener(v -> {
             Intent intent = new Intent(this, GuardiansActivity.class);
