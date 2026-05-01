@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <queries>
+        <package android:name="com.google.android.gms" />
+    </queries>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.BOOP">
+
+        <!-- SPLASH — punto de entrada -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.BOOP.Splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- ONBOARDING -->
+        <activity
+            android:name=".ui.onboarding.OnboardingActivity"
+            android:exported="false" />
+
+        <!-- LOGIN / REGISTRO -->
+        <activity
+            android:name=".ui.auth.AuthActivity"
+            android:exported="false" />
+
+        <!-- AÑADIR MASCOTA -->
+        <activity
+            android:name=".ui.addpet.AddPetActivity"
+            android:exported="false" />
+
+        <!-- PERFIL MASCOTA -->
+        <activity android:name=".ui.pet.PetProfileActivity" />
+        <activity android:name=".ui.pet.PetListActivity" />
+
+        <!-- PERFIL PERSONA -->
+        <activity
+            android:name=".ui.profile.EditProfileActivity"
+            android:exported="false" />
+
+        <!-- HOME PRINCIPAL -->
+        <activity
+            android:name=".HomeActivity"
+            android:exported="false" />
+
+        <!-- AJUSTES (modo oscuro/claro/sistema + notificaciones + perfil) -->
+        <activity
+            android:name=".ui.settings.SettingsActivity"
+            android:exported="false" />
+
+        <!-- COMUNIDAD - CREAR POST Y COMENTARIOS-->
+        <activity
+            android:name=".ui.community.CreatePostActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".ui.community.PostDetailActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- HISTORIAL MÉDICO - AÑADIR VISITA -->
+        <activity
+            android:name=".ui.medical.AddMedicalVisitActivity"
+            android:exported="false" />
+
+        <!-- CUIDADORES -->
+        <activity
+            android:name=".ui.settings.GuardiansActivity"
+            android:exported="false" />
+
+        <!-- VACUNAS -->
+        <activity
+            android:name=".ui.medical.VaccinesActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.medical.AddVaccineActivity"
+            android:exported="false" />
+
+        <!-- RECORDATORIOS - AÑADIR -->
+        <activity
+            android:name=".ui.alerts.AddAlertActivity"
+            android:exported="false" />
+
+    </application>
+
+</manifest>

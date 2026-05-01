@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BOOP</string>
+    <string name="app_tagline">Cero dramas, 100% mimos</string>
+    <string name="ob_skip">Omitir</string>
+    <string name="ob_next">Siguiente</string>
+    <string name="ob_start">¡Empezar!</string>
+    <string name="ob1_title">Todo sobre tu mascota en un lugar</string>
+    <string name="ob1_body">Chip, vacunas, historial médico, alergias… centralizado y siempre a mano.</string>
+    <string name="ob2_title">Nunca olvides nada importante</string>
+    <string name="ob2_body">Recordatorios predictivos para vacunas, medicación y visitas al veterinario.</string>
+    <string name="ob3_title">Conecta con tu comunidad</string>
+    <string name="ob3_body">Adopciones, intercambio de productos, dudas y consejos cerca de ti.</string>
+    <string name="add_pet_title">Añade tu primera mascota</string>
+    <string name="add_pet_hint">Siempre podrás editar esto después.</string>
+    <string name="add_pet_cta">Crear perfil de mascota</string>
+    <string name="species_cat">Gato</string>
+    <string name="species_dog">Perro</string>
+    <string name="species_rabbit">Conejo</string>
+    <string name="species_bird">Ave</string>
+    <string name="nav_home">Inicio</string>
+    <string name="nav_map">Mapa</string>
+    <string name="nav_community">Comunidad</string>
+    <string name="nav_profile">Perfil</string>
+    <!-- NAMING UNIFICADO: Alertas → Recordatorios en toda la UI -->
+    <string name="alerts_title">Recordatorios</string>
+    <string name="alerts_new">Nuevo recordatorio</string>
+    <string name="alerts_section_urgent">Urgentes</string>
+    <string name="alerts_section_upcoming">Próximos</string>
+    <string name="alerts_section_scheduled">Programados</string>
+    <!-- Repeat options (simplified) -->
+    <string name="repeat_none">No</string>
+    <string name="repeat_daily">Diaria</string>
+    <string name="repeat_monthly">Mensual</string>
+    <string name="repeat_yearly">Anual</string>
+    <!-- Settings -->
+    <string name="settings_title">Perfil y ajustes</string>
+    <string name="settings_logout">Cerrar sesión</string>
+    <!-- Map filters -->
+    <string name="filter_vets">Veterinarios</string>
+    <string name="filter_grooming">Peluquerías</string>
+    <string name="filter_parks">Parques</string>
+    <!-- Guardians -->
+    <string name="guardians_search_hint">Buscar por email…</string>
+    <string name="guardians_search_btn">Buscar</string>
+    <!-- Errors -->
+    <string name="error_required">Este campo es obligatorio</string>
+    <string name="error_chip_required">El chip es obligatorio para Gatos y Perros</string>
+    <string name="error_network">Sin conexión. Comprueba tu red.</string>
+</resources>

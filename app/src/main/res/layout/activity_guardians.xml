@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_light"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="40dp">
+
+        <!-- Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="18dp">
+            <FrameLayout android:id="@+id/btn_back" android:layout_width="36dp" android:layout_height="36dp"
+                android:background="@drawable/bg_circle_green_light">
+                <ImageView android:layout_width="18dp" android:layout_height="18dp" android:layout_gravity="center"
+                    android:src="@drawable/ic_arrow_back" app:tint="@color/boop_green" />
+            </FrameLayout>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Cuidadores" android:textSize="18sp" android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/text_primary_light" android:layout_marginStart="12dp" />
+        </LinearLayout>
+
+        <!-- Subtítulo dinámico -->
+        <TextView
+            android:id="@+id/tv_guardians_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="12sp"
+            android:textColor="@color/text_secondary_light"
+            android:paddingHorizontal="24dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Lista dinámica de cuidadores -->
+        <LinearLayout
+            android:id="@+id/container_guardians"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp" />
+
+        <!-- Sección de búsqueda -->
+        <LinearLayout
+            android:id="@+id/layout_search_guardian"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:visibility="gone">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:hintEnabled="false"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_search_guardian_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Email del cuidador"
+                    android:inputType="textEmailAddress" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_search_user"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="12dp"
+                android:text="Buscar usuario"
+                android:fontFamily="@font/poppins_bold"
+                app:cornerRadius="12dp"
+                app:backgroundTint="@color/boop_green" />
+
+            <!-- Resultado de búsqueda dinámico -->
+            <LinearLayout
+                android:id="@+id/layout_search_result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="12dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tv_search_result_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:background="@drawable/bg_circle_green_light"
+                    android:textColor="@color/boop_green_dark"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:gravity="center" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_add_guardian"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Añadir como cuidador"
+                    android:fontFamily="@font/poppins_bold"
+                    app:cornerRadius="12dp"
+                    app:backgroundTint="@color/boop_green" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Botón añadir cuidador -->
+        <LinearLayout
+            android:id="@+id/btn_show_add_field"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_circle_dashed_green"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <ImageView android:layout_width="20dp" android:layout_height="20dp"
+                android:src="@drawable/ic_plus" app:tint="@color/boop_green" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Añadir cuidador" android:layout_marginStart="10dp"
+                android:fontFamily="@font/poppins_bold" android:textColor="@color/boop_green" />
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

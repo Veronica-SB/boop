@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/surface_light">
+
+    <!-- Header -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+        <FrameLayout android:id="@+id/btn_close" android:layout_width="36dp" android:layout_height="36dp"
+            android:background="@drawable/bg_circle_green_light">
+            <ImageView android:layout_width="18dp" android:layout_height="18dp" android:layout_gravity="center"
+                android:src="@drawable/ic_close" app:tint="@color/boop_green" />
+        </FrameLayout>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_centerInParent="true" android:text="Nueva publicación"
+            android:textSize="18sp" android:fontFamily="@font/poppins_bold" />
+        <com.google.android.material.button.MaterialButton android:id="@+id/btn_publish"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true" android:text="Publicar"
+            app:backgroundTint="@color/boop_green" app:cornerRadius="12dp" />
+    </RelativeLayout>
+
+    <androidx.core.widget.NestedScrollView android:layout_width="match_parent" android:layout_height="match_parent">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:padding="24dp">
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="TIPO DE PUBLICACIÓN" android:textSize="11sp" android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/text_tertiary_light" android:layout_marginBottom="12dp" />
+
+            <com.google.android.material.chip.ChipGroup android:id="@+id/chip_group_category"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                app:singleSelection="true" app:selectionRequired="true" android:layout_marginBottom="24dp">
+                <com.google.android.material.chip.Chip android:id="@+id/chip_question"
+                    style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:text="❓ Pregunta" android:checked="true" />
+                <com.google.android.material.chip.Chip android:id="@+id/chip_adoption"
+                    style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:text="🐾 Adopción" />
+                <com.google.android.material.chip.Chip android:id="@+id/chip_exchange"
+                    style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:text="🔄 Intercambio" />
+            </com.google.android.material.chip.ChipGroup>
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="¿QUÉ QUIERES COMPARTIR?" android:textSize="11sp" android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/text_tertiary_light" android:layout_marginBottom="12dp" />
+
+            <EditText android:id="@+id/et_post_content" android:layout_width="match_parent"
+                android:layout_height="120dp" android:background="@drawable/bg_search_bar"
+                android:gravity="top" android:padding="16dp" android:hint="Escribe aquí tu pregunta, historia o descripción..."
+                android:textSize="14sp" android:fontFamily="@font/poppins_regular" android:layout_marginBottom="24dp" />
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="FOTOS (OPCIONAL)" android:textSize="11sp" android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/text_tertiary_light" android:layout_marginBottom="12dp" />
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="80dp"
+                android:background="@drawable/bg_circle_dashed_green" android:gravity="center"
+                android:orientation="horizontal" android:layout_marginBottom="24dp">
+                <ImageView android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_camera" app:tint="@color/boop_green" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Añadir foto" android:layout_marginStart="8dp" android:textColor="@color/boop_green"
+                    android:fontFamily="@font/poppins_semibold" />
+            </LinearLayout>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_publish_large"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="32dp"
+                android:text="Publicar en la comunidad"
+                android:fontFamily="@font/poppins_bold"
+                app:backgroundTint="@color/boop_green"
+                app:cornerRadius="20dp"
+                app:elevation="4dp" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>
