@@ -5,28 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Placeholder para el mapa -->
-    <View
-        android:id="@+id/map_placeholder"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/background_light" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Mapa (Pendiente de configuración)"
-        android:textColor="@color/text_tertiary_light"
-        android:fontFamily="@font/poppins_semibold" />
-
-    <!-- Google Map (comentado hasta configurar dependencias)
-    <fragment
+    <org.osmdroid.views.MapView
         android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-    -->
 
     <!-- Search bar overlay -->
     <LinearLayout

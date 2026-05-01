@@ -69,6 +69,14 @@ dependencies {
     // implementation("com.google.android.gms:play-services-maps:18.2.0")
     // implementation("com.google.android.gms:play-services-location:21.1.0")
 
+    //OSMDroid
+    implementation("org.osmdroid:osmdroid-android:6.1.18")
+    implementation("com.google.android.gms:play-services-location:21.1.0")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+
+    //Notificaciones desde el dispositivo sin backend
+    implementation("androidx.work:work-runtime:2.9.0")
+
     // Google Sign-In
     implementation("com.google.android.gms:play-services-auth:21.0.0")
 
