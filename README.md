@@ -6,7 +6,8 @@ Boop es una app Android nativa para propietarios de mascotas. Reúne en un mismo
 
 > Proyecto final del CFGS en Desarrollo de Aplicaciones Multiplataforma (curso 2025/26). Estado: **prototipo funcional**.
 
-▶️ **[Ver vídeo de presentación]([https://www.youtube.com/watch?v=lhRZ6flL4tk](https://youtu.be/lhRZ6flL4tk))**
+▶️ **[Ver vídeo de presentación] **
+https://youtu.be/KMsVTUCCjsg
 
 
 ---
